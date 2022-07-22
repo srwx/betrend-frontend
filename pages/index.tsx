@@ -1,10 +1,10 @@
 import type { NextPage } from "next"
-import classNames from "classnames"
+import { HomeHero } from "pages/Home/HomeHero"
 
 const Home: NextPage = () => {
   return (
     <>
-      <div className={classNames("text-red-500")}>Hello World</div>
+      <HomeHero />
     </>
   )
 }
