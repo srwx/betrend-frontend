@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 12rem;
   height: 3rem;
   border-radius: 0.5rem;
-  background-color: #8a3bf0;
+  background: #8a3bf0;
   display: flex;
   justify-content: center;
   align-items: center;

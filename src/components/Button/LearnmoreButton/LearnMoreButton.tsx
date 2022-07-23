@@ -13,6 +13,8 @@ const Container = styled.div`
   gap: 2rem;
   cursor: pointer;
   color: white;
+  transition-property: background;
+  transition-duration: 500ms;
 
   :hover {
     background: rgba(255, 255, 255, 0.3);

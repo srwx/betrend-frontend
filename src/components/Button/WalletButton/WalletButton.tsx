@@ -14,6 +14,8 @@ const Container = styled.div`
   align-items: center;
   gap: 0.8rem;
   cursor: pointer;
+  transition-property: background;
+  transition-duration: 500ms;
 
   :hover {
     background: #8a3bf0;
