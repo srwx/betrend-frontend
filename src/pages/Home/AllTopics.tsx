@@ -93,7 +93,7 @@ export const AllTopics = () => {
             <Input placeholder="Find your interests" />
           </SearchContainer>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-14 overflow-scroll pb-8">
           {topicList.map((topic, i) => (
             <TopicCard
               key={i}

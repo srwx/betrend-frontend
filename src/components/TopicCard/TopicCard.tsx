@@ -9,6 +9,7 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
   width: 31%;
+  min-width: 22rem;
   height: 32rem;
   border-radius: 1rem;
   background-image: url(${(props) => props.url});
@@ -18,7 +19,6 @@ const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   padding-top: 0.8rem;
-  justify-content: space-between;
   position: relative;
   overflow: hidden;
 `
@@ -46,7 +46,7 @@ export const TopicCard = ({
       </div>
       <article
         className={classNames(
-          "text-white px-5 pt-48 pb-10 space-y-7",
+          "text-white px-5 pt-48 pb-10 space-y-7 absolute bottom-0 left-0",
           "bg-gradient-to-t from-black to-transparent"
         )}
       >

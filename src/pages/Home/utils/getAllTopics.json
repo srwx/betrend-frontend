@@ -19,5 +19,26 @@
     "deadline": "Jul 26, 2022, 12:00 PM",
     "isVote": true,
     "isActive": false
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card1.png",
+    "title": "NFTs in Web3.0 and the Metaverse",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": true,
+    "isActive": true
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card2.png",
+    "title": "NFTs in Web3.0 and the Metaverse",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": false,
+    "isActive": false
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card3.png",
+    "title": "NFTs in Web3.0 and the Metaverse",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": true,
+    "isActive": false
   }
 ]

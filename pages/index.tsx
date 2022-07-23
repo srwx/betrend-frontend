@@ -19,6 +19,7 @@ const Container = styled.div`
 
 const BgImage = styled.img`
   width: 100vw;
+  height: 50rem;
   z-index: 1;
 `
 
