@@ -6,7 +6,7 @@ import allTopics from "./utils/getAllTopics.json"
 export const SortTopics = () => {
   return (
     <HomeContainer>
-      <div className="px-[2.5rem]">
+      <div className="px-[2.5rem] pb-28">
         <ul className="flex list-none text-2xl text-[#B5BDC1] mb-12">
           <li className="flex-[0.2]">Place</li>
           <li className="flex-[0.4]">Topics</li>
