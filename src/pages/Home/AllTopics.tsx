@@ -27,11 +27,15 @@ const CategoryWrapper = styled.ul`
   overflow: scroll;
 `
 
-interface CategoryProps {}
+interface CategoryProps {
+  index: number
+}
 
-const Category = styled.li`
+const Category = styled.li<CategoryProps>`
   white-space: nowrap;
   cursor: pointer;
+  font-weight: ${(props) => (props.index === 0 ? "600" : "400")};
+  color: ${(props) => (props.index === 0 ? "#ffffff" : "#B5BDC1")};
 `
 
 const SearchContainer = styled.div`
@@ -79,7 +83,14 @@ export const AllTopics = () => {
         <div className="flex justify-between items-center gap-12">
           <CategoryWrapper>
             {categoryList.map((c, i) => (
-              <Category key={i}>{c}</Category>
+              <>
+                <Category key={i} index={i}>
+                  {c}
+                  {i === 0 ? (
+                    <div className="w-full h-[0.2rem] bg-white z-20" />
+                  ) : null}
+                </Category>
+              </>
             ))}
           </CategoryWrapper>
           <SearchContainer>
