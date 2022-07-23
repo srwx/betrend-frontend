@@ -1,7 +1,10 @@
+import classNames from "classnames"
+import { TopicCard } from "component/TopicCard/TopicCard"
 import Image from "next/image"
 import React from "react"
 import styled from "styled-components"
 import { HomeContainer } from "styles/index"
+import topicList from "./utils/getAllTopics.json"
 
 const categoryList = [
   "All Topics",
@@ -24,6 +27,8 @@ const CategoryWrapper = styled.ul`
   overflow: scroll;
 `
 
+interface CategoryProps {}
+
 const Category = styled.li`
   white-space: nowrap;
   cursor: pointer;
@@ -31,9 +36,9 @@ const Category = styled.li`
 
 const SearchContainer = styled.div`
   width: 18rem;
-  height: 2.5rem;
+  height: 3.5rem;
   background: transparent;
-  border: 2px solid #b5bdc1;
+  border: 1px solid #b5bdc1;
   border-radius: 8px;
   backdrop-filter: blur(4px);
   color: #b5bdc1;
@@ -45,6 +50,8 @@ const SearchContainer = styled.div`
     width: 100%;
     transition-property: width;
     transition-duration: 1s;
+    color: white;
+    border: 1px solid white;
   }
 `
 
@@ -60,7 +67,7 @@ const Input = styled.input`
 `
 
 const Container = styled(HomeContainer)`
-  z-index: 999;
+  z-index: 10;
   width: 100%;
   position: absolute;
   top: 5rem;
@@ -69,11 +76,11 @@ const Container = styled(HomeContainer)`
 export const AllTopics = () => {
   return (
     <Container>
-      <div className="px-[2.5rem] py-[2rem]">
+      <div className="px-[2.5rem] py-[1rem] space-y-16">
         <div className="flex justify-between items-center gap-12">
           <CategoryWrapper>
-            {categoryList.map((c) => (
-              <Category key={c}>{c}</Category>
+            {categoryList.map((c, i) => (
+              <Category key={i}>{c}</Category>
             ))}
           </CategoryWrapper>
           <SearchContainer>
@@ -85,6 +92,18 @@ export const AllTopics = () => {
             />
             <Input placeholder="Find your interests" />
           </SearchContainer>
+        </div>
+        <div className="flex justify-between">
+          {topicList.map((topic, i) => (
+            <TopicCard
+              key={i}
+              backgroundUrl={topic.backgroundUrl}
+              title={topic.title}
+              deadline={topic.deadline}
+              isActive={topic.isActive}
+              isVote={topic.isVote}
+            />
+          ))}
         </div>
       </div>
     </Container>

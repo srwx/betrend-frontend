@@ -15,13 +15,20 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  border-bottom: 0.001rem solid gray;
 `
 
 export const Header = () => {
   return (
     <Container>
       <div
-        className={classNames("text-lg text-white font-semibold tracking-wide")}
+        className={classNames(
+          "text-lg text-white font-semibold tracking-wide cursor-pointer"
+        )}
       >
         BeTrend
       </div>
