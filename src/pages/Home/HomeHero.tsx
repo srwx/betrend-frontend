@@ -35,8 +35,8 @@ export const HomeHero = () => {
           <Image
             src="/gray-rectangle.png"
             alt="temp"
-            width="470"
-            height="470"
+            width="590"
+            height="480"
           />
         </div>
       </div>

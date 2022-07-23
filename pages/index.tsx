@@ -12,13 +12,24 @@ const Container = styled.div`
     #0b0013 53.72%,
     #7a2d7a 124.1%
   );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const BgImage = styled.img`
+  width: 100vw;
+  z-index: 1;
 `
 
 const Home: NextPage = () => {
   return (
     <Container>
       <HomeHero />
-      <AllTopics />
+      <div className="relative flex flex-col items-center">
+        <BgImage src="/images/allTopics/bg.png" alt="bg" />
+        <AllTopics />
+      </div>
     </Container>
   )
 }
