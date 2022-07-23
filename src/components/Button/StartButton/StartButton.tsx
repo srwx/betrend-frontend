@@ -11,7 +11,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
   cursor: pointer;
 
   :hover {

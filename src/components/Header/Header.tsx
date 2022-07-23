@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { WalletButton } from "component/WalletButton/WalletButton"
+import { WalletButton } from "component/Button/WalletButton/WalletButton"
 import React from "react"
 import styled from "styled-components"
 

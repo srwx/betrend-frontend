@@ -6,9 +6,7 @@ import { HomeContainer } from "styles/index"
 const Home: NextPage = () => {
   return (
     <>
-      <HomeContainer>
-        <HomeHero />
-      </HomeContainer>
+      <HomeHero />
     </>
   )
 }
