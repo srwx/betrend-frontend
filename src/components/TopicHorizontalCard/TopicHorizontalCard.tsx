@@ -38,7 +38,7 @@ export const TopicHorizontalCard = ({
       </div>
       <span className="flex-[0.4]">{topic}</span>
       <span className="flex-[0.25]">{prize}</span>
-      <div className="flex-[0.2] flex gap-2">
+      <div className="flex-[0.2] flex gap-3">
         {isActive ? <Active /> : <Closed />}
         {isVote ? <Vote /> : <Bet />}
       </div>

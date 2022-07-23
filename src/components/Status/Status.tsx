@@ -24,7 +24,7 @@ export const Bet = () => {
   return (
     <div
       className={classNames(
-        "w-[3.8rem] h-[2rem]", // base
+        "w-[4.5rem] h-[2rem]", // base
         "rounded-lg flex justify-center items-center",
         "bg-gradient-to-r from-[#5834F8] to-[#0FAEFF]"
       )}
@@ -42,7 +42,7 @@ export const Active = () => {
   return (
     <div
       className={classNames(
-        "w-[5.3rem] h-[2rem]", // base
+        "w-[5.5rem] h-[2rem]", // base
         "rounded-lg flex justify-center items-center",
         "bg-gradient-to-r from-[#00A6C7] to-[#20FDA5]"
       )}
