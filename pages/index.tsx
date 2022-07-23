@@ -5,6 +5,7 @@ import { HomeContainer } from "styles/index"
 import styled from "styled-components"
 import { AllTopics } from "pages/Home/AllTopics"
 import { SortTopics } from "pages/Home/SortTopics"
+import { Faq } from "pages/Home/Faq"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -18,9 +19,13 @@ const Container = styled.div`
   align-items: center;
 `
 
-const BgImage = styled.img`
+interface BgImageProps {
+  height: string
+}
+
+const BgImage = styled.img<BgImageProps>`
   width: 100vw;
-  height: 52rem;
+  height: ${(props) => props.height};
   z-index: 1;
 `
 
@@ -29,10 +34,15 @@ const Home: NextPage = () => {
     <Container>
       <HomeHero />
       <div className="relative flex flex-col items-center">
-        <BgImage src="/images/allTopics/bg.png" alt="bg" />
+        <BgImage height="52rem" src="/images/allTopics/bg.png" alt="bg" />
         <AllTopics />
       </div>
       <SortTopics />
+      {/* TODO: FAQ's section */}
+      {/* <div className="relative flex flex-col items-center pt-32">
+        <BgImage height="50rem" src="/images/faq-bg.png" alt="bg" />
+        <Faq />
+      </div> */}
     </Container>
   )
 }
