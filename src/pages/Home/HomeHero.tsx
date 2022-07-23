@@ -17,13 +17,19 @@ export const HomeHero = () => {
         <div className="flex-[0.55] space-y-10">
           <article className={classNames("text-white space-y-6")}>
             <h1 className={classNames("text-4xl font-semibold")}>
-              Lorem ipsum dolor sit amet,
+              The Easiest Way to
+              <br />
+              Drive in Trend with{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6C7] to-[#20FDA5] font-semibold">
+                DAO
+              </span>
             </h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+            <p className="text-[#F0F2F2]">
+              100 % transparency. Secure and annonymouse transactions.
+              <br />
+              Stay up to date with exciting news while driving ideas with
+              <br />
+              The power of Decentralized Autonomous Organization.
             </p>
           </article>
           <div className="flex gap-6">
