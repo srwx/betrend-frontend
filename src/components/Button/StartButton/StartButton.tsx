@@ -24,9 +24,13 @@ const Container = styled.div`
     );
   }
 `
-export const StartButton = () => {
+interface StartButtonProps {
+  onClick: () => void
+}
+
+export const StartButton = ({ onClick }: StartButtonProps) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <span className="text-white font-semibold text-lg tracking-wider">
         Get Started
       </span>

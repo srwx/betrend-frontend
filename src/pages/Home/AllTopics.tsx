@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import { TopicCard } from "component/TopicCard/TopicCard"
 import Image from "next/image"
-import React from "react"
+import React, { forwardRef } from "react"
 import styled from "styled-components"
 import { HomeContainer } from "styles/index"
 import topicList from "./utils/getAllTopics.json"
@@ -74,11 +74,12 @@ const Container = styled(HomeContainer)`
   z-index: 10;
   position: absolute;
   top: 5rem;
+  scroll-margin: 4.8rem;
 `
 
-export const AllTopics = () => {
+export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <Container>
+    <Container ref={ref}>
       <div className="px-[2.5rem] py-[1rem] space-y-16">
         <div className="flex justify-between items-center gap-12">
           <CategoryWrapper>
@@ -118,4 +119,6 @@ export const AllTopics = () => {
       </div>
     </Container>
   )
-}
+})
+
+AllTopics.displayName = "AllTopics"

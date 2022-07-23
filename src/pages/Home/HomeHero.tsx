@@ -2,11 +2,16 @@ import classNames from "classnames"
 import { LearnMoreButton } from "component/Button/LearnmoreButton/LearnMoreButton"
 import { StartButton } from "component/Button/StartButton/StartButton"
 import Image from "next/image"
-import React from "react"
+import React, { forwardRef, MutableRefObject } from "react"
 import styled from "styled-components"
 import { HomeContainer } from "styles/index"
 
-export const HomeHero = () => {
+export const HomeHero = forwardRef<HTMLDivElement>((_, ref) => {
+  const scrollToAllTopicsSection = () =>
+    (ref as MutableRefObject<HTMLDivElement>).current.scrollIntoView({
+      behavior: "smooth",
+    })
+
   return (
     <HomeContainer>
       <div
@@ -33,7 +38,7 @@ export const HomeHero = () => {
             </p>
           </article>
           <div className="flex gap-6">
-            <StartButton />
+            <StartButton onClick={scrollToAllTopicsSection} />
             <LearnMoreButton />
           </div>
         </div>
@@ -48,4 +53,6 @@ export const HomeHero = () => {
       </div>
     </HomeContainer>
   )
-}
+})
+
+HomeHero.displayName = "HomeHero"
