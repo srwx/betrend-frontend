@@ -25,7 +25,7 @@ export const LearnMoreButton = () => {
       <span className="text-white font-semibold text-lg tracking-wider">
         Learn more
       </span>
-      <Image src="/icons/newtab.png" alt="icon" width="18" height="18" />
+      <Image src="/images/icons/newtab.png" alt="icon" width="18" height="18" />
     </Container>
   )
 }

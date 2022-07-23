@@ -30,7 +30,7 @@ export const StartButton = () => {
       <span className="text-white font-semibold text-lg tracking-wider">
         Get Started
       </span>
-      <Image src="/icons/arrow.png" alt="arrow" width="15" height="12" />
+      <Image src="/images/icons/arrow.png" alt="arrow" width="15" height="12" />
     </Container>
   )
 }

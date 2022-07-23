@@ -22,7 +22,12 @@ const Container = styled.div`
 export const WalletButton = () => {
   return (
     <Container>
-      <Image src="/icons/wallet.png" alt="wallet icon" width="20" height="20" />
+      <Image
+        src="/images/icons/wallet.png"
+        alt="wallet icon"
+        width="20"
+        height="20"
+      />
       <div className={classNames("text-sm font-medium tracking-[0.04em]")}>
         Connect Wallet
       </div>
