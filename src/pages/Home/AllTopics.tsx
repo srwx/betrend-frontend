@@ -68,7 +68,6 @@ const Input = styled.input`
 
 const Container = styled(HomeContainer)`
   z-index: 10;
-  width: 100%;
   position: absolute;
   top: 5rem;
 `

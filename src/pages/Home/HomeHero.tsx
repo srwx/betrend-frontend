@@ -11,7 +11,7 @@ export const HomeHero = () => {
     <HomeContainer>
       <div
         className={classNames(
-          "px-[2.5rem] py-[4rem] flex items-center gap-x-20"
+          "px-[2.5rem] py-[4rem] flex items-center gap-x-20 w-full"
         )}
       >
         <div className="flex-[0.55] space-y-10">

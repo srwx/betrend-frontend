@@ -4,6 +4,7 @@ import { HomeHero } from "pages/Home/HomeHero"
 import { HomeContainer } from "styles/index"
 import styled from "styled-components"
 import { AllTopics } from "pages/Home/AllTopics"
+import { SortTopics } from "pages/Home/SortTopics"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -19,7 +20,7 @@ const Container = styled.div`
 
 const BgImage = styled.img`
   width: 100vw;
-  height: 50rem;
+  height: 52rem;
   z-index: 1;
 `
 
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
         <BgImage src="/images/allTopics/bg.png" alt="bg" />
         <AllTopics />
       </div>
+      <SortTopics />
     </Container>
   )
 }
