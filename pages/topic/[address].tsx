@@ -27,6 +27,14 @@ const BgImage = styled.img`
   top: 0px;
 `
 
+const SectionContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
 const FirstSection = styled.div`
   width: 100%;
   padding: 0 80px;
@@ -66,12 +74,12 @@ const Topic = () => {
   ) as TopicProps
   return (
     <Container>
-      <div className="relative flex flex-col justify-center items-center">
+      <SectionContainer>
         <FirstSection>
           <DetailSection props={topic} />
         </FirstSection>
-      </div>
-      <div className="relative flex flex-col justify-center items-center">
+      </SectionContainer>
+      <SectionContainer>
         <BgImage src="/images/allTopics/bg.png" alt="bg" />
         <SecondSection>
           <div className="w-full">
@@ -83,7 +91,7 @@ const Topic = () => {
             )}
           </div>
         </SecondSection>
-      </div>
+      </SectionContainer>
     </Container>
   )
 }
