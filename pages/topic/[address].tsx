@@ -27,7 +27,9 @@ const BgImage = styled.img`
 import voteIcon from "../../public/images/icons/vote.svg"
 import classNames from "classnames"
 import QuestionSection from "component/QuestionSection/QuestionSection"
-import Vote from "pages/Topic/Vote"
+import Vote from "pages/Topic/VoteSection"
+import BetSection from "pages/Topic/BetSection"
+import VoteSection from "pages/Topic/VoteSection"
 
 enum ITopicStatus {
   VOTE = "VOTE",
@@ -43,9 +45,7 @@ const sampleChoice = [
 ]
 
 const Topic = () => {
-  const [topicStatus, setTopicStatus] = useState<ITopicStatus>(
-    ITopicStatus.VOTE
-  )
+  const [topicStatus, setTopicStatus] = useState<ITopicStatus>(ITopicStatus.BET)
   return (
     <Container>
       <div>123</div>
@@ -60,7 +60,10 @@ const Topic = () => {
         >
           <div className="py-12 px-10 w-full">
             {topicStatus === ITopicStatus.VOTE && (
-              <Vote sampleChoice={sampleChoice} />
+              <VoteSection sampleChoice={sampleChoice} />
+            )}
+            {topicStatus === ITopicStatus.BET && (
+              <BetSection sampleChoice={sampleChoice} />
             )}
           </div>
         </div>
