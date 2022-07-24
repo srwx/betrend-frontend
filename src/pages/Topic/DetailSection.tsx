@@ -3,13 +3,21 @@ import React from "react"
 import { TopicProps } from "./Topic.type"
 
 export const DetailSection = ({ topic }: { topic: TopicProps }) => {
-  console.log(topic)
+  const {
+    bgBigUrl,
+    title,
+    description,
+    isVote,
+    isActive,
+    timeEndBet,
+    timeEndVote,
+  } = topic
   return (
     <div className="w-full flex justify-between">
-      <span className="text-white">{topic.address}</span>
+      <span className="text-white">{title}</span>
       <div className="flex gap-4">
-        {topic.isVote ? <Vote /> : <Bet />}
-        {topic.isActive ? <Active /> : <Closed />}
+        {isVote ? <Vote /> : <Bet />}
+        {isActive ? <Active /> : <Closed />}
       </div>
     </div>
   )
