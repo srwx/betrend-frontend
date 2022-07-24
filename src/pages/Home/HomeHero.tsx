@@ -72,7 +72,7 @@ export const HomeHero = forwardRef<HTMLDivElement>((_, ref) => {
       >
         <div className="flex-[0.5] space-y-10">
           <article className={classNames("text-white space-y-6")}>
-            <h1 className={classNames("text-4xl font-semibold")}>
+            <h1 className={classNames("text-5xl font-semibold")}>
               The Easiest Way to
               <br />
               Drive in Trend with{" "}
