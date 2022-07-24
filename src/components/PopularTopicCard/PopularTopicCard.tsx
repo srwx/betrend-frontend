@@ -85,7 +85,6 @@ const ImageGroup = ({
           width={mappingImagesizeByRank(ranking, "width")}
           height={mappingImagesizeByRank(ranking, "height")}
           layout="fixed"
-          className="border-2 border-red-500"
         />
       </ImageWrapper>
     </div>
