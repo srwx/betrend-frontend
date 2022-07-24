@@ -1,68 +1,218 @@
-[
-  {
-    "address": "1",
-    "backgroundUrl": "/images/allTopics/card1.png",
-    "bgBigUrl": "/images/allTopics/card1b.png",
-    "title": "Bitcoin Price Prediction 2030",
-    "description": "Since the early days, the bitcoin story has been one of highs and lows. However, not too dissimilar to other riskier assets, the general trend has been upwards, with bitcoin printing new highs while avoiding new lows. In December 2017, BTC struck a high of $19,871. A year-long bull run, driven by a hot ICO market, saw BTC surge from a January low of $740.",
-    "deadline": "Jul 26, 2022, 12:00 PM",
-    "isVote": true,
-    "isActive": true,
-    "prize": 1.23451324
-  },
-  {
-    "address": "2",
-    "backgroundUrl": "/images/allTopics/card2.png",
-    "bgBigUrl": "/images/allTopics/card2b.png",
-    "title": "Instagram vs. Facebook",
-    "description": "Since the early days, the bitcoin story has been one of highs and lows. However, not too dissimilar to other riskier assets, the general trend has been upwards, with bitcoin printing new highs while avoiding new lows. In December 2017, BTC struck a high of $19,871. A year-long bull run, driven by a hot ICO market, saw BTC surge from a January low of $740.",
-    "deadline": "Jul 26, 2022, 12:00 PM",
-    "isVote": false,
-    "isActive": false,
-    "prize": 1.23451324
-  },
-  {
-    "address": "3",
-    "backgroundUrl": "/images/allTopics/card3.png",
-    "bgBigUrl": "/images/allTopics/card3b.png",
-    "title": "Blackpink Are Making A Comeback",
-    "description": "Since the early days, the bitcoin story has been one of highs and lows. However, not too dissimilar to other riskier assets, the general trend has been upwards, with bitcoin printing new highs while avoiding new lows. In December 2017, BTC struck a high of $19,871. A year-long bull run, driven by a hot ICO market, saw BTC surge from a January low of $740.",
-    "deadline": "Jul 26, 2022, 12:00 PM",
-    "isVote": true,
-    "isActive": false,
-    "prize": 1.23451324
-  },
-  {
-    "address": "4",
-    "backgroundUrl": "/images/allTopics/card4.png",
-    "bgBigUrl": "/images/allTopics/card4b.png",
-    "title": "Cat vs. Dog  Which Is the Best Pet for Me?",
-    "description": "Since the early days, the bitcoin story has been one of highs and lows. However, not too dissimilar to other riskier assets, the general trend has been upwards, with bitcoin printing new highs while avoiding new lows. In December 2017, BTC struck a high of $19,871. A year-long bull run, driven by a hot ICO market, saw BTC surge from a January low of $740.",
-    "deadline": "Jul 26, 2022, 12:00 PM",
-    "isVote": true,
-    "isActive": true,
-    "prize": 1.23451324
-  },
-  {
-    "address": "5",
-    "backgroundUrl": "/images/allTopics/card5.png",
-    "bgBigUrl": "/images/allTopics/card5b.png",
-    "title": "ALPHA vs. Sand King Gomez",
-    "description": "Since the early days, the bitcoin story has been one of highs and lows. However, not too dissimilar to other riskier assets, the general trend has been upwards, with bitcoin printing new highs while avoiding new lows. In December 2017, BTC struck a high of $19,871. A year-long bull run, driven by a hot ICO market, saw BTC surge from a January low of $740.",
-    "deadline": "Jul 26, 2022, 12:00 PM",
-    "isVote": false,
-    "isActive": false,
-    "prize": 1.23451324
-  },
-  {
-    "address": "6",
-    "backgroundUrl": "/images/allTopics/card6.png",
-    "bgBigUrl": "/images/allTopics/card6b.png",
-    "title": "Digital \"twins\" that track your health",
-    "description": "Since the early days, the bitcoin story has been one of highs and lows. However, not too dissimilar to other riskier assets, the general trend has been upwards, with bitcoin printing new highs while avoiding new lows. In December 2017, BTC struck a high of $19,871. A year-long bull run, driven by a hot ICO market, saw BTC surge from a January low of $740.",
-    "deadline": "Jul 26, 2022, 12:00 PM",
-    "isVote": true,
-    "isActive": false,
-    "prize": 1.23451324
-  }
-]
+{
+  "data": [
+    {
+      "backgroundUrl": "/images/allTopics/card1.png",
+      "bgBigUrl": "/images/allTopics/card1b.png",
+      "address": "0xc3a4eaacb866146138b494368c6a60cf41a95cb8",
+      "title": "Bitcoin Price Prediction 2030",
+      "description": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Lorem",
+      "timeEndBet": "Jul 24, 2022, 07:39 AM",
+      "timeEndVote": "Jul 24, 2022, 08:39 AM",
+      "totalVoteCount": 0,
+      "totalBetCount": 0,
+      "prize": 0,
+      "choices": [
+        {
+          "index": 0,
+          "choice": "UP",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 1,
+          "choice": "DOWN",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 2,
+          "choice": "SAME",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        }
+      ],
+      "isVote": true,
+      "isBet": false,
+      "isActive": true
+    },
+    {
+      "backgroundUrl": "/images/allTopics/card2.png",
+      "bgBigUrl": "/images/allTopics/card2b.png",
+      "address": "0x9a04e4cff8b5baabda11d252fc342df8b2872226",
+      "title": "Instagram vs. Facebook",
+      "description": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Lorem",
+      "timeEndBet": "Jul 24, 2022, 07:42 AM",
+      "timeEndVote": "Jul 24, 2022, 08:42 AM",
+      "totalVoteCount": 0,
+      "totalBetCount": 0,
+      "prize": 0,
+      "choices": [
+        {
+          "index": 0,
+          "choice": "Instagram",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 1,
+          "choice": "Facebook",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        }
+      ],
+      "isVote": true,
+      "isBet": false,
+      "isActive": false
+    },
+    {
+      "backgroundUrl": "/images/allTopics/card3.png",
+      "bgBigUrl": "/images/allTopics/card3b.png",
+      "address": "0xc3a4eaacb866146178b494368c6a60cf41a95cb8",
+      "title": "Blackpink Are Making A Comeback",
+      "description": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Lorem",
+      "timeEndBet": "Jul 24, 2022, 07:39 AM",
+      "timeEndVote": "Jul 24, 2022, 08:39 AM",
+      "totalVoteCount": 0,
+      "totalBetCount": 0,
+      "prize": 0,
+      "choices": [
+        {
+          "index": 0,
+          "choice": "UP",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 1,
+          "choice": "DOWN",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 2,
+          "choice": "SAME",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        }
+      ],
+      "isVote": false,
+      "isBet": false,
+      "isActive": true
+    },
+    {
+      "backgroundUrl": "/images/allTopics/card4.png",
+      "bgBigUrl": "/images/allTopics/card4b.png",
+      "address": "0x9a04d4cff8b5baabda11d252fc342df8b2872226",
+      "title": "Cat vs. Dog  Which Is the Best Pet for Me?",
+      "description": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Lorem",
+      "timeEndBet": "Jul 24, 2022, 07:42 AM",
+      "timeEndVote": "Jul 24, 2022, 08:42 AM",
+      "totalVoteCount": 0,
+      "totalBetCount": 0,
+      "prize": 0,
+      "choices": [
+        {
+          "index": 0,
+          "choice": "Instagram",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 1,
+          "choice": "Facebook",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        }
+      ],
+      "isVote": false,
+      "isBet": false,
+      "isActive": false
+    },
+    {
+      "backgroundUrl": "/images/allTopics/card5.png",
+      "bgBigUrl": "/images/allTopics/card5b.png",
+      "address": "0xc2a4eaacb866146138b494368c6a60cf41a95cb8",
+      "title": "ALPHA vs. Sand King Gomez",
+      "description": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Lorem",
+      "timeEndBet": "Jul 24, 2022, 07:39 AM",
+      "timeEndVote": "Jul 24, 2022, 08:39 AM",
+      "totalVoteCount": 0,
+      "totalBetCount": 0,
+      "prize": 0,
+      "choices": [
+        {
+          "index": 0,
+          "choice": "UP",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 1,
+          "choice": "DOWN",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 2,
+          "choice": "SAME",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        }
+      ],
+      "isVote": false,
+      "isBet": false,
+      "isActive": true
+    },
+    {
+      "backgroundUrl": "/images/allTopics/card6.png",
+      "bgBigUrl": "/images/allTopics/card6b.png",
+      "address": "0x1a04e4cff8b5baabda11d252fc342df8b2872226",
+      "title": "Digital \"twins\" that track your health",
+      "description": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Lorem",
+      "timeEndBet": "Jul 24, 2022, 07:42 AM",
+      "timeEndVote": "Jul 24, 2022, 08:42 AM",
+      "totalVoteCount": 0,
+      "totalBetCount": 0,
+      "prize": 0,
+      "choices": [
+        {
+          "index": 0,
+          "choice": "Instagram",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        },
+        {
+          "index": 1,
+          "choice": "Facebook",
+          "voteCount": 0,
+          "betCount": 0,
+          "betValue": 0
+        }
+      ],
+      "isVote": true,
+      "isBet": false,
+      "isActive": false
+    }
+  ],
+  "success": true
+}

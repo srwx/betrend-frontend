@@ -1,11 +1,25 @@
+interface Choice {
+  index: 0
+  choice: string
+  voteCount: number
+  betCount: number
+  betValue: number
+}
+
 export interface TopicProps {
-  address: string
   backgroundUrl: string
   bgBigUrl: string
+  address: string
   title: string
   description: string
-  deadline: string
-  isVote: boolean
-  isActive: boolean
+  category: string
+  timeEndBet: string
+  timeEndVote: string
+  totalVoteCount: number
+  totalBetCount: number
   prize: number
+  choices: Choice[]
+  isVote: boolean
+  isBet: boolean
+  isActive: boolean
 }
