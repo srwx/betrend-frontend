@@ -1,0 +1,50 @@
+[
+  {
+    "backgroundUrl": "/images/allTopics/card1.png",
+    "title": "Bitcoin Price Prediction 2030",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": true,
+    "isActive": true,
+    "prize": 1.23451324
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card2.png",
+    "title": "Instagram vs. Facebook",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": false,
+    "isActive": false,
+    "prize": 1.23451324
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card3.png",
+    "title": "Blackpink Are Making A Comeback",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": true,
+    "isActive": false,
+    "prize": 1.23451324
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card4.png",
+    "title": "Cat vs. Dog  Which Is the Best Pet for Me?",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": true,
+    "isActive": true,
+    "prize": 1.23451324
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card5.png",
+    "title": "ALPHA vs. Sand King Gomez",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": false,
+    "isActive": false,
+    "prize": 1.23451324
+  },
+  {
+    "backgroundUrl": "/images/allTopics/card6.png",
+    "title": "Digital \"twins\" that track your health",
+    "deadline": "Jul 26, 2022, 12:00 PM",
+    "isVote": true,
+    "isActive": false,
+    "prize": 1.23451324
+  }
+]
