@@ -17,6 +17,16 @@ const fadeOut = keyframes`
   }
 `
 
+const scroll = keyframes`
+  0%{
+    transform: rotateX(-30deg) rotateY(-10deg) rotateZ(0deg);
+  }
+
+  100%{
+    transform: rotateX(-30deg) rotateZ(360deg);
+  }
+`
+
 const scrollUp = keyframes`
   100% {
     transform: translateY(-6px);
@@ -100,12 +110,20 @@ export const HomeHero = forwardRef<HTMLDivElement>((_, ref) => {
             width="3267"
             height="2630"
           />
-          <div className="absolute top-[53%] left-[8%] animate-[floatingUp_3.2s_linear_infinite_alternate]">
+          <div className="absolute top-[53%] left-[8.4%] animate-[floatingUp_3s_linear_infinite_alternate]">
             <Image
               src="/images/hero/diamond.png"
               alt="eth"
               width="21"
               height="42"
+            />
+          </div>
+          <div className="absolute top-[50%] left-[5%] opacity-0 animate-fade">
+            <Image
+              src="/images/hero/shadow.png"
+              alt="shadow"
+              width="61"
+              height="80"
             />
           </div>
           <div className="absolute top-[58%] left-[19.2%] animate-[floatingDown_3s_linear_infinite_alternate]">
@@ -116,12 +134,28 @@ export const HomeHero = forwardRef<HTMLDivElement>((_, ref) => {
               height="42"
             />
           </div>
+          <div className="absolute top-[57.8%] left-[15.9%] opacity-0 animate-fade">
+            <Image
+              src="/images/hero/shadow.png"
+              alt="shadow"
+              width="61"
+              height="80"
+            />
+          </div>
           <div className="absolute top-[69%] left-[30.3%] animate-[floatingUp_3.2s_linear_infinite_alternate]">
             <Image
               src="/images/hero/diamond.png"
               alt="eth"
               width="21"
               height="42"
+            />
+          </div>
+          <div className="absolute top-[65.6%] left-[27.4%] opacity-0 animate-fade">
+            <Image
+              src="/images/hero/shadow.png"
+              alt="shadow"
+              width="60"
+              height="80"
             />
           </div>
           <div className="absolute top-[57.3%] right-[19.5%] animate-[floatingUp_3.2s_linear_infinite_alternate]">
