@@ -108,6 +108,7 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
           {topicList.map((topic, i) => (
             <TopicCard
               key={i}
+              address={topic.address}
               backgroundUrl={topic.backgroundUrl}
               title={topic.title}
               deadline={topic.deadline}
