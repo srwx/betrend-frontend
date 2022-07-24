@@ -42,7 +42,6 @@ export const TopicCard = ({
   isVote,
   isActive,
 }: TopicCardProps) => {
-  console.log(address)
   return (
     <Link href={`/topic/${address}`}>
       <Container url={backgroundUrl}>

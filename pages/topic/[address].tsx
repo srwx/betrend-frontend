@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import allTopics from "src/pages/Home/utils/getAllTopics.json"
 import styled from "styled-components"
-import Image from "next/image"
-import ChoiceButton from "component/Button/ChoiceButton"
-import VoteButton from "component/Button/VoteButton.tsx"
+import { DetailSection } from "pages/Topic/DetailSection"
+import { useRouter } from "next/router"
+import { TopicProps } from "pages/Topic/Topic.type"
+import BetSection from "pages/Topic/BetSection"
+import VoteSection from "pages/Topic/VoteSection"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -24,12 +26,21 @@ const BgImage = styled.img`
   position: absolute;
   top: 0px;
 `
-import voteIcon from "../../public/images/icons/vote.svg"
-import classNames from "classnames"
-import QuestionSection from "component/QuestionSection/QuestionSection"
-import Vote from "pages/Topic/VoteSection"
-import BetSection from "pages/Topic/BetSection"
-import VoteSection from "pages/Topic/VoteSection"
+
+const FirstSection = styled.div`
+  width: 100%;
+  padding: 0 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1314px;
+  z-index: 10;
+`
+
+const SecondSection = styled(FirstSection)`
+  position: absolute;
+  top: 5rem;
+`
 
 enum ITopicStatus {
   VOTE = "VOTE",
@@ -45,20 +56,25 @@ const sampleChoice = [
 ]
 
 const Topic = () => {
-  const [topicStatus, setTopicStatus] = useState<ITopicStatus>(ITopicStatus.BET)
+  const [topicStatus, setTopicStatus] = useState<ITopicStatus>(
+    ITopicStatus.VOTE
+  )
+  const router = useRouter()
+  const { address } = router.query
+  const topic = allTopics.find(
+    (topic) => topic.address === address
+  ) as TopicProps
   return (
     <Container>
-      <div>123</div>
-      <div>123</div>
-      <div>123</div>
-      <div className="h-[400px]">P. Wong Part</div>
-      <div className="min-w-full relative flex flex-col justify-center items-center pb-24">
+      <div className="relative flex flex-col justify-center items-center">
+        <FirstSection>
+          <DetailSection props={topic} />
+        </FirstSection>
+      </div>
+      <div className="relative flex flex-col justify-center items-center">
         <BgImage src="/images/allTopics/bg.png" alt="bg" />
-        <div
-          className="py-12 px-[60px] w-full flex flex-col justify-center items-start max-w-[1314px]"
-          style={{ zIndex: 10 }}
-        >
-          <div className="py-12 px-10 w-full">
+        <SecondSection>
+          <div className="w-full">
             {topicStatus === ITopicStatus.VOTE && (
               <VoteSection sampleChoice={sampleChoice} />
             )}
@@ -66,7 +82,7 @@ const Topic = () => {
               <BetSection sampleChoice={sampleChoice} />
             )}
           </div>
-        </div>
+        </SecondSection>
       </div>
     </Container>
   )
