@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useState } from "react"
 import allTopics from "src/pages/Home/utils/getAllTopics.json"
 import styled from "styled-components"
 import Image from "next/image"
@@ -70,13 +70,3 @@ const Topic = () => {
 }
 
 export default Topic
-
-/*export async function getServerSideProps(context) {
-  const { address } = context.query
-  const topic = allTopics.find((topic) => topic.address === address)
-  return {
-    props: {
-      topic,
-    },
-  }
-} */
