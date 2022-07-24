@@ -50,6 +50,12 @@ const ImageAnimation = styled(Image)`
   background-image: url(../../../public/images/popularTopics/Light.png);
   position: absolute;
 `
+const ImageWrapper = styled.div<{ width: string; height: string }>`
+  filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.85));
+  border-radius: 20px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+`
 
 const ImageGroup = ({
   ranking,
@@ -68,13 +74,20 @@ const ImageGroup = ({
         width="75px"
         height="75px"
       />
-      <Image
-        src={imageUrl}
-        alt={title}
-        layout="intrinsic"
+
+      <ImageWrapper
         width={mappingImagesizeByRank(ranking, "width")}
         height={mappingImagesizeByRank(ranking, "height")}
-      />
+      >
+        <Image
+          src={imageUrl}
+          alt={title}
+          width={mappingImagesizeByRank(ranking, "width")}
+          height={mappingImagesizeByRank(ranking, "height")}
+          layout="fixed"
+          className="border-2 border-red-500"
+        />
+      </ImageWrapper>
     </div>
   )
 }
