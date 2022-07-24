@@ -2,23 +2,14 @@ import { Active, Bet, Closed, Vote } from "component/Status/Status"
 import React from "react"
 import { TopicProps } from "./Topic.type"
 
-export const DetailSection = ({ props }: { props: TopicProps }) => {
-  const {
-    address,
-    bgBigUrl,
-    title,
-    description,
-    isVote,
-    isActive,
-    deadline,
-    prize,
-  } = props
+export const DetailSection = ({ topic }: { topic: TopicProps }) => {
+  console.log(topic)
   return (
     <div className="w-full flex justify-between">
-      <span className="text-white">{title}</span>
+      <span className="text-white">{topic.address}</span>
       <div className="flex gap-4">
-        {isVote ? <Vote /> : <Bet />}
-        {isActive ? <Active /> : <Closed />}
+        {topic.isVote ? <Vote /> : <Bet />}
+        {topic.isActive ? <Active /> : <Closed />}
       </div>
     </div>
   )

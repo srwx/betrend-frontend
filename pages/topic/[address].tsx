@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { TopicProps } from "pages/Topic/Topic.type"
 import BetSection from "pages/Topic/BetSection"
 import VoteSection from "pages/Topic/VoteSection"
+import { GetServerSidePropsContext } from "next"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -63,20 +64,15 @@ const sampleChoice = [
   "Higher than 1,000,000$",
 ]
 
-const Topic = () => {
+export default function Topic({ topic }: { topic: TopicProps }) {
   const [topicStatus, setTopicStatus] = useState<ITopicStatus>(
     ITopicStatus.VOTE
   )
-  const router = useRouter()
-  const { address } = router.query
-  const topic = allTopics.find(
-    (topic) => topic.address === address
-  ) as TopicProps
   return (
     <Container>
       <SectionContainer>
         <FirstSection>
-          <DetailSection props={topic} />
+          <DetailSection topic={topic} />
         </FirstSection>
       </SectionContainer>
       <SectionContainer>
@@ -96,4 +92,15 @@ const Topic = () => {
   )
 }
 
-export default Topic
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { address } = context.query
+  const topic = allTopics.data.find((topic) => topic.address === address)
+  console.log(topic)
+  return {
+    props: {
+      topic,
+    },
+  }
+}
