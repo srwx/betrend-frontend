@@ -1,19 +1,15 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next"
+import { DetailSection } from "pages/Topic/DetailSection"
 import React from "react"
 import allTopics from "src/pages/Home/utils/getAllTopics.json"
-
-interface TopicProps {
-  address: string
-  backgroundUrl: string
-  title: string
-  deadline: string
-  isVote: boolean
-  isActive: boolean
-  prize: number
-}
+import { TopicProps } from "pages/Topic/Topic.type"
 
 export default function Topic({ topic }: { topic: TopicProps }) {
-  return <div>{topic.title}</div>
+  return (
+    <div>
+      <DetailSection props={topic} />
+    </div>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (
