@@ -1,40 +1,57 @@
 import classNames from "classnames"
+import ChoiceButton from "component/Button/ChoiceButton"
 import VoteButton from "component/Button/VoteButton.tsx"
-import QuestionSection from "component/QuestionSection/QuestionSection"
+import Modal from "component/Modal"
+import QuestionSection, {
+  QuestionTitle,
+} from "component/QuestionSection/QuestionSection"
+import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
 import Image from "next/image"
+import { useState, useCallback } from "react"
 
+export enum SectionStatus {
+  UNAVAILABLE = "UNAVAILABLE",
+  INPROGRESS = "INPROGRESS",
+  SUCCESS = "SUCCESS",
+  FINISH = "FINISH",
+}
 interface IBetSectionProps {
   sampleChoice: string[]
+  canBet?: boolean
+  sectionStatus?: SectionStatus
 }
 
-const BetSection = ({ sampleChoice }: IBetSectionProps) => {
+const BetSection = ({
+  sampleChoice,
+  canBet = true,
+  sectionStatus = SectionStatus.INPROGRESS,
+}: IBetSectionProps) => {
+  const [selectChoice, setSelectChoice] = useState<string>("")
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+
+  const handleOnSelect = useCallback((selectChoice: string) => {
+    setSelectChoice(selectChoice)
+  }, [])
+
   return (
     <>
-      <QuestionSection sampleChoice={sampleChoice} />
-      <div className="flex justify-start items-center w-full gap-x-6">
-        <div
-          className={classNames(
-            "flex-1 border-[#20FDA5] border-2 rounded-[10px] py-4 px-6 flex justify-between items-center"
-          )}
-        >
-          <div className="bg-clip-text text-lg text-transparent font-bold bg-gradient-to-r from-[#00A6C7] to-[#20FDA5] text-gradient-to-r">
-            Amount:
-          </div>
-          <div className="flex justify-start items-center gap-x-2">
-            <Image
-              src="/images/icons/token.svg"
-              alt="BTR Token"
-              width="24px"
-              height="24px"
-            />
-            <div className="text-lg text-white">0 BTR</div>
-          </div>
-        </div>
-        <VoteButton className="flex-1">
+      {sectionStatus === SectionStatus.INPROGRESS && (
+        <QuestionSection
+          sampleChoice={sampleChoice}
+          mode={ITopicMode.BET}
+          selectChoice={selectChoice}
+          handleOnSelect={handleOnSelect}
+        />
+      )}
+      {sectionStatus === SectionStatus.INPROGRESS && canBet && (
+        <VoteButton>
           <div
             className={classNames(
               "flex justify-center items-center flex-row gap-x-2"
             )}
+            onClick={() => {
+              setModalOpen(true)
+            }}
           >
             <div className={classNames("text-white text-xl font-bold ")}>
               Bet
@@ -47,7 +64,33 @@ const BetSection = ({ sampleChoice }: IBetSectionProps) => {
             />
           </div>
         </VoteButton>
-      </div>
+      )}
+      {sectionStatus === SectionStatus.FINISH && (
+        <>
+          <QuestionTitle
+            title="What do you think the price of Bitcoin will be in 2030?"
+            amount="0.000250"
+          />
+          <div className="my-8">
+            {sampleChoice.map((eachChoice) => (
+              <ChoiceButton
+                key={eachChoice}
+                title={eachChoice}
+                disabled
+                isSelect={selectChoice === eachChoice}
+                isVote={selectChoice === eachChoice}
+              />
+            ))}
+          </div>
+        </>
+      )}
+      {modalOpen && (
+        <Modal
+          onClose={() => {
+            setModalOpen(false)
+          }}
+        />
+      )}
     </>
   )
 }

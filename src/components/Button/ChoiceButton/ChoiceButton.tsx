@@ -28,8 +28,11 @@ const ChoiceButton = ({
   return (
     <button
       className={classNames(
-        "w-full my-3 border border-[#B58DC1] rounded-[10px] relative",
-        { "border-[#20FDA5] border-2": isSelect },
+        "w-full my-3 border rounded-[10px] relative transition-[border-color] duration-300",
+        {
+          "border-[#20FDA5]": isSelect,
+          "border-[#B58DC1]": !isSelect,
+        },
         className
       )}
       {...restProps}

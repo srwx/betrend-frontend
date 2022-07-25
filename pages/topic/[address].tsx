@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useCallback, useState } from "react"
 import allTopics from "src/pages/Home/utils/getAllTopics.json"
 import styled from "styled-components"
 import { DetailSection } from "pages/Topic/DetailSection"
-import { useRouter } from "next/router"
 import { TopicProps } from "pages/Topic/Topic.type"
 import BetSection from "pages/Topic/BetSection"
 import VoteSection from "pages/Topic/VoteSection"
 import { GetServerSidePropsContext } from "next"
+import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
+import Tabs from "component/Tabs"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -46,16 +47,10 @@ const FirstSection = styled.div`
   z-index: 10;
 `
 
-const SecondSection = styled(FirstSection)`
-  position: absolute;
+const SecondSection = styled(FirstSection)` d
   top: 5rem;
+  flex-direction: column;
 `
-
-enum ITopicStatus {
-  VOTE = "VOTE",
-  BET = "BET",
-  END = "END",
-}
 
 const sampleChoice = [
   "Lower than 100,000$",
@@ -65,9 +60,12 @@ const sampleChoice = [
 ]
 
 export default function Topic({ topic }: { topic: TopicProps }) {
-  const [topicStatus, setTopicStatus] = useState<ITopicStatus>(
-    ITopicStatus.VOTE
-  )
+  const [topicMode, setTopicMode] = useState<ITopicMode>(ITopicMode.BET)
+
+  const handleTopicChange = useCallback((mode: ITopicMode) => {
+    setTopicMode(mode)
+  }, [])
+
   return (
     <Container>
       <SectionContainer>
@@ -78,11 +76,12 @@ export default function Topic({ topic }: { topic: TopicProps }) {
       <SectionContainer>
         <BgImage src="/images/allTopics/bg.png" alt="bg" />
         <SecondSection>
+          <Tabs handleTopicChange={handleTopicChange} mode={topicMode} />
           <div className="w-full">
-            {topicStatus === ITopicStatus.VOTE && (
+            {topicMode === ITopicMode.VOTE && (
               <VoteSection sampleChoice={sampleChoice} />
             )}
-            {topicStatus === ITopicStatus.BET && (
+            {topicMode === ITopicMode.BET && (
               <BetSection sampleChoice={sampleChoice} />
             )}
           </div>
