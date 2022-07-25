@@ -3,7 +3,7 @@ import React from "react"
 import styled from "styled-components"
 
 const VoteContainer = styled.div`
-  width: 4.5rem;
+  width: 5.5rem;
   height: 2rem;
   display: flex;
   justify-content: center;
@@ -41,7 +41,7 @@ export const Bet = () => {
   return (
     <VoteContainer>
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5834F8] to-[#0FAEFF] font-semibold">
-        Bet
+        Squeeze
       </span>
     </VoteContainer>
   )

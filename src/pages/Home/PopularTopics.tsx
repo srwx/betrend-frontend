@@ -7,7 +7,6 @@ import PopularTopicCard from "component/PopularTopicCard"
 import { RankingTypes } from "component/PopularTopicCard/PopularTopicCard"
 
 const PopularTopics = () => {
-  console.log(MockTopic)
   return (
     <HomeContainer>
       <div className={classNames("px-10 py-16")}>
@@ -31,18 +30,18 @@ const PopularTopics = () => {
           )}
         >
           <PopularTopicCard
-            title={MockTopic[0].title}
-            imageUrl={MockTopic[0].backgroundUrl}
+            title={MockTopic.data[0].title}
+            imageUrl={MockTopic.data[0].backgroundUrl}
             ranking={RankingTypes.SECOND}
           />
           <PopularTopicCard
-            title={MockTopic[1].title}
-            imageUrl={MockTopic[1].backgroundUrl}
+            title={MockTopic.data[1].title}
+            imageUrl={MockTopic.data[1].backgroundUrl}
             ranking={RankingTypes.FIRST}
           />
           <PopularTopicCard
-            title={MockTopic[2].title}
-            imageUrl={MockTopic[2].backgroundUrl}
+            title={MockTopic.data[2].title}
+            imageUrl={MockTopic.data[2].backgroundUrl}
             ranking={RankingTypes.THIRD}
           />
         </div>

@@ -105,12 +105,13 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
           </SearchContainer>
         </div>
         <div className="flex justify-between gap-14 overflow-scroll pb-8">
-          {topicList.map((topic, i) => (
+          {topicList.data.map((topic, i) => (
             <TopicCard
               key={i}
+              address={topic.address}
               backgroundUrl={topic.backgroundUrl}
               title={topic.title}
-              deadline={topic.deadline}
+              deadline={topic.timeEndVote}
               isActive={topic.isActive}
               isVote={topic.isVote}
             />

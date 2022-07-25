@@ -14,7 +14,7 @@ export const SortTopics = () => {
           <li className="flex-[0.2]">Status</li>
         </ul>
         <div className="space-y-6">
-          {allTopics.map((topic, i) => (
+          {allTopics.data.map((topic, i) => (
             <TopicHorizontalCard
               key={i}
               place={i + 1}
