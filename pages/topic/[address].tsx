@@ -96,7 +96,6 @@ export const getServerSideProps = async (
 ) => {
   const { address } = context.query
   const topic = allTopics.data.find((topic) => topic.address === address)
-  console.log(topic)
   return {
     props: {
       topic,

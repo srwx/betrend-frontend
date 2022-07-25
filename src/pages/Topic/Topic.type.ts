@@ -13,6 +13,8 @@ export interface TopicProps {
   title: string
   description: string
   category: string
+  timeStartBet: string
+  timeStartVote: string
   timeEndBet: string
   timeEndVote: string
   totalVoteCount: number
