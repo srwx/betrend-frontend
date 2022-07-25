@@ -7,6 +7,7 @@ import { AllTopics } from "pages/Home/AllTopics"
 import { SortTopics } from "pages/Home/SortTopics"
 import { Faq } from "pages/Home/Faq"
 import { useRef } from "react"
+import PopularTopics from "pages/Home/PopularTopics"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -39,6 +40,7 @@ const Home: NextPage = () => {
         <BgImage height="52rem" src="/images/allTopics/bg.png" alt="bg" />
         <AllTopics ref={allTopicsRef} />
       </div>
+      <PopularTopics />
       <SortTopics />
       {/* TODO: FAQ's section */}
       {/* <div className="relative flex flex-col items-center pt-32">
