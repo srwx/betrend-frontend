@@ -7,9 +7,11 @@ import { TopicProps } from "./Topic.type"
 const Information = ({
   mainText,
   secondaryText,
+  isVote,
 }: {
   mainText: string
   secondaryText: string
+  isVote: boolean
 }) => {
   return (
     <div className="w-full space-y-5">
@@ -89,6 +91,7 @@ export const DetailSection = ({ topic }: { topic: TopicProps }) => {
                 key={information.mainText}
                 mainText={information.mainText}
                 secondaryText={information.secondaryText}
+                isVote={isVote}
               />
             ))}
           </div>
