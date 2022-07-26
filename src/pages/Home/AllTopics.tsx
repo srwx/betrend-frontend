@@ -53,9 +53,8 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
   )
   useEffect(() => {
     const fetchAllOrganization = async () => {
-      const res = await axios.get(
-        "https://7e7a-171-103-207-66.ap.ngrok.io/api/organizations"
-      )
+      const res = await axios.get("https://7ab2-171-103-207-66.ap.ngrok.io")
+      console.log(res)
     }
     fetchAllOrganization()
   }, [])
