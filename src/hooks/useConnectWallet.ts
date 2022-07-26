@@ -3,7 +3,7 @@ import { injected } from "src/contexts/Web3ContextProvider"
 import useConnectWeb3React from "./useConnectWeb3React"
 
 const useConnectWallet = () => {
-  const { activate, account } = useConnectWeb3React()
+  const { activate, account, library } = useConnectWeb3React()
   const handleConnectWallet = useCallback(() => {
     try {
       if (Boolean(localStorage.getItem("isConnect"))) {

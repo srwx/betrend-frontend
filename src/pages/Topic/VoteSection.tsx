@@ -6,14 +6,24 @@ import QuestionSection, {
 } from "component/QuestionSection/QuestionSection"
 import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
 import Image from "next/image"
-import { useCallback, useState } from "react"
+import { HardCodeContractAddress } from "src/constants/const"
+import { useCallback, useEffect, useState } from "react"
+import useConnectWeb3React from "src/hooks/useConnectWeb3React"
+import { voteService } from "src/services/VoteService"
 import styled from "styled-components"
-import { SectionStatus } from "./BetSection"
-
 interface IVoteProps {
   sampleChoice: string[]
   canVote?: boolean
   sectionStatus?: SectionStatus
+  choiceSelect: string
+  toggleChange: () => void
+}
+
+export enum SectionStatus {
+  UNAVAILABLE = "UNAVAILABLE",
+  INPROGRESS = "INPROGRESS",
+  SUCCESS = "SUCCESS",
+  FINISH = "FINISH",
 }
 
 const BarChart = styled.div<{ width: number; winner: boolean }>`
@@ -40,8 +50,8 @@ const sampleChoice = [
 ]
 
 const mockData: { title: string; numberOfVote: number }[] = sampleChoice.map(
-  (data: string) => {
-    return { title: data, numberOfVote: Math.random() * 100 }
+  (data: string, index: number) => {
+    return { title: data, numberOfVote: (index + 1) * 10 }
   }
 )
 const sumMockData = mockData.reduce(
@@ -63,11 +73,39 @@ const VoteSection = ({
   sampleChoice,
   canVote = true,
   sectionStatus = SectionStatus.FINISH,
+  choiceSelect,
+  toggleChange,
 }: IVoteProps) => {
+  const { account, library } = useConnectWeb3React()
   const [selectChoice, setSelectChoice] = useState<string>("")
   const handleOnSelect = useCallback((selectChoice: string) => {
     setSelectChoice(selectChoice)
   }, [])
+
+  const handleOnVote = useCallback(async () => {
+    if (account && library) {
+      const choiceId = sampleChoice.findIndex(
+        (choiceName) => choiceName === selectChoice
+      )
+      console.log("choiceId =", choiceId)
+      if (choiceId !== 0 && !choiceId) {
+        return
+      }
+      console.log("pass-this!")
+      await voteService.vote(
+        account,
+        HardCodeContractAddress,
+        library,
+        choiceId
+      )
+      toggleChange()
+    }
+  }, [account, library, selectChoice, sampleChoice, toggleChange])
+
+  useEffect(() => {
+    setSelectChoice(choiceSelect)
+  }, [choiceSelect])
+
   return (
     <>
       {sectionStatus === SectionStatus.INPROGRESS && (
@@ -76,6 +114,8 @@ const VoteSection = ({
           mode={ITopicMode.VOTE}
           selectChoice={selectChoice}
           handleOnSelect={handleOnSelect}
+          disabledChoice={!canVote}
+          choiceVote={choiceSelect}
         />
       )}
       {sectionStatus === SectionStatus.INPROGRESS && canVote && (
@@ -84,6 +124,7 @@ const VoteSection = ({
             className={classNames(
               "flex justify-center items-center flex-row gap-x-2"
             )}
+            onClick={handleOnVote}
           >
             <div className={classNames("text-white text-xl font-bold")}>
               Vote

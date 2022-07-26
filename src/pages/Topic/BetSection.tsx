@@ -8,13 +8,8 @@ import QuestionSection, {
 import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
 import Image from "next/image"
 import { useState, useCallback } from "react"
+import { SectionStatus } from "./VoteSection"
 
-export enum SectionStatus {
-  UNAVAILABLE = "UNAVAILABLE",
-  INPROGRESS = "INPROGRESS",
-  SUCCESS = "SUCCESS",
-  FINISH = "FINISH",
-}
 interface IBetSectionProps {
   sampleChoice: string[]
   canBet?: boolean
@@ -41,6 +36,8 @@ const BetSection = ({
           mode={ITopicMode.BET}
           selectChoice={selectChoice}
           handleOnSelect={handleOnSelect}
+          disabledChoice={!canBet}
+          choiceVote={""}
         />
       )}
       {sectionStatus === SectionStatus.INPROGRESS && canBet && (

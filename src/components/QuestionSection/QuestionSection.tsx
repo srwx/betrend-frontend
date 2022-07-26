@@ -8,6 +8,8 @@ interface IQuestionSectionProps {
   mode: ITopicMode
   selectChoice: string
   handleOnSelect: (selectChoice: string) => void
+  disabledChoice: boolean
+  choiceVote: string
 }
 
 interface IQuestionTitleProps {
@@ -41,6 +43,8 @@ const QuestionSection = ({
   sampleChoice,
   mode,
   selectChoice,
+  disabledChoice,
+  choiceVote,
   handleOnSelect,
 }: IQuestionSectionProps) => {
   return (
@@ -64,6 +68,8 @@ const QuestionSection = ({
             onClick={() => {
               handleOnSelect(eachChoice)
             }}
+            isVote={choiceVote === eachChoice}
+            disabled={disabledChoice}
           />
         ))}
       </div>
