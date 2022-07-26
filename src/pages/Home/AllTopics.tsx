@@ -1,7 +1,9 @@
+import axios from "axios"
 import classNames from "classnames"
 import { OrganizationCard } from "component/OrganizationCard/OrganizationCard"
 import Image from "next/image"
-import React, { forwardRef } from "react"
+import React, { forwardRef, useEffect, useState } from "react"
+import { OrganizationProps } from "src/types/organization.type"
 import styled from "styled-components"
 import { HomeContainer } from "styles/index"
 import topicList from "./utils/getAllTopics.json"
@@ -42,7 +44,21 @@ const Container = styled(HomeContainer)`
   scroll-margin: 4.8rem;
 `
 
+interface GetAllOrganizationResponse {
+  data: OrganizationProps[]
+}
 export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
+  const [organizationList, setOrganizationList] = useState<OrganizationProps[]>(
+    []
+  )
+  useEffect(() => {
+    const fetchAllOrganization = async () => {
+      const res = await axios.get(
+        "https://7e7a-171-103-207-66.ap.ngrok.io/api/organizations"
+      )
+    }
+    fetchAllOrganization()
+  }, [])
   return (
     <Container ref={ref}>
       <div className="flex flex-col justify-center items-center px-[2.5rem] py-[1rem] space-y-16">
