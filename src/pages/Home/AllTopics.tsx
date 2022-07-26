@@ -1,45 +1,13 @@
 import classNames from "classnames"
-import { TopicCard } from "component/TopicCard/TopicCard"
+import { OrganizationCard } from "component/OrganizationCard/OrganizationCard"
 import Image from "next/image"
 import React, { forwardRef } from "react"
 import styled from "styled-components"
 import { HomeContainer } from "styles/index"
 import topicList from "./utils/getAllTopics.json"
 
-const categoryList = [
-  "All Topics",
-  "Technology",
-  "Cryptocurrency",
-  "Music",
-  "Sports",
-  "Game",
-  "Animals",
-]
-
-const CategoryWrapper = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  color: white;
-  display: flex;
-  gap: 4rem;
-  font-size: 1.4rem;
-  overflow: scroll;
-`
-
-interface CategoryProps {
-  index: number
-}
-
-const Category = styled.li<CategoryProps>`
-  white-space: nowrap;
-  cursor: pointer;
-  font-weight: ${(props) => (props.index === 0 ? "600" : "400")};
-  color: ${(props) => (props.index === 0 ? "#ffffff" : "#B5BDC1")};
-`
-
 const SearchContainer = styled.div`
-  width: 18rem;
+  width: 100%;
   height: 3.5rem;
   background: transparent;
   border: 1px solid #b5bdc1;
@@ -51,9 +19,6 @@ const SearchContainer = styled.div`
   padding-left: 0.7rem;
 
   :focus-within {
-    width: 100%;
-    transition-property: width;
-    transition-duration: 1s;
     color: white;
     border: 1px solid white;
   }
@@ -80,42 +45,37 @@ const Container = styled(HomeContainer)`
 export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <Container ref={ref}>
-      <div className="px-[2.5rem] py-[1rem] space-y-16">
-        <div className="flex justify-between items-center gap-12">
-          <CategoryWrapper>
-            {categoryList.map((c, i) => (
-              <>
-                <Category key={i} index={i}>
-                  {c}
-                  {i === 0 ? (
-                    <div className="w-full h-[0.2rem] bg-white z-20" />
-                  ) : null}
-                </Category>
-              </>
-            ))}
-          </CategoryWrapper>
-          <SearchContainer>
-            <Image
-              src="/images/icons/search.svg"
-              alt="icon"
-              width="23"
-              height="23"
-            />
-            <Input placeholder="Find your interests" />
-          </SearchContainer>
-        </div>
-        <div className="flex justify-between gap-14 overflow-scroll pb-8">
+      <div className="flex flex-col justify-center items-center px-[2.5rem] py-[1rem] space-y-16">
+        {/* Search section */}
+        <SearchContainer>
+          <Image
+            src="/images/icons/search.svg"
+            alt="icon"
+            width="23"
+            height="23"
+          />
+          <Input placeholder="Search Organizations" />
+        </SearchContainer>
+        {/* Card section */}
+        <div className="flex flex-wrap justify-between gap-y-8">
           {topicList.data.map((topic, i) => (
-            <TopicCard
+            <OrganizationCard
               key={i}
               address={topic.address}
               backgroundUrl={topic.backgroundUrl}
               title={topic.title}
-              deadline={topic.timeEndVote}
-              isActive={topic.isActive}
-              isVote={topic.isVote}
+              membersCount="1234"
             />
           ))}
+        </div>
+        {/* Button section */}
+        <div className="cursor-pointer">
+          <Image
+            src="/images/allOrganization/seeMoreButton.png"
+            alt="button"
+            width="240px"
+            height="70px"
+          />
         </div>
       </div>
     </Container>

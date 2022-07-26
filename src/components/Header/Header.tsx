@@ -33,7 +33,7 @@ export const Header = () => {
           "text-lg text-white font-semibold tracking-wide cursor-pointer"
         )}
       >
-        BeTrend
+        Squeeze
       </div>
       <div
         className={classNames(
