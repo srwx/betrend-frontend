@@ -57,7 +57,7 @@ export default function Organization({
           <span className="font-light">See all</span>
         </div>
         {/* Post list (Card) */}
-        <div className="flex justify-between flex-wrap gap-y-8">
+        <div className="flex justify-between flex-wrap gap-y-8 pb-44">
           {questionList.map((question, i) => (
             <PostCard
               key={i}
