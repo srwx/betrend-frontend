@@ -16,7 +16,15 @@ const Container = styled.div`
   max-width: 1314px;
 `
 
-export const OrganizationHorizontalCard = ({ img }: { img: string }) => {
+export const OrganizationHorizontalCard = ({
+  img,
+  name,
+  peopleNumber,
+}: {
+  img: string
+  name?: string
+  peopleNumber?: number
+}) => {
   return (
     <Container>
       <div className="flex items-center">
@@ -27,7 +35,7 @@ export const OrganizationHorizontalCard = ({ img }: { img: string }) => {
         {/* Text section */}
         <article className="text-white flex flex-col justify-between h-[4rem] ml-5">
           {/* TODO: Organization ane props */}
-          <h1 className="text-xl font-semibold">TOP NEWS</h1>
+          <h1 className="text-xl font-semibold">{name}</h1>
           {/* TODO: Total Members props */}
           <div className="flex items-center gap-x-2">
             <Image
@@ -36,7 +44,7 @@ export const OrganizationHorizontalCard = ({ img }: { img: string }) => {
               height="20px"
               alt="user icon"
             />
-            <span className="text-sm">1111 Members in Community</span>
+            <span className="text-sm">{peopleNumber} Members in Community</span>
           </div>
         </article>
       </div>

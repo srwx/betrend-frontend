@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import allTopics from "src/pages/Home/utils/getAllTopics.json"
 import styled from "styled-components"
 import { DetailSection } from "pages/Topic/DetailSection"
-import { TopicProps } from "pages/Topic/Topic.type"
 import BetSection from "pages/Topic/BetSection"
 import VoteSection from "pages/Topic/VoteSection"
 import { GetServerSidePropsContext } from "next"
 import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
 import Tabs from "component/Tabs"
+import { TopicProps } from "src/types/topic.type"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -59,18 +59,35 @@ const sampleChoice = [
   "Higher than 1,000,000$",
 ]
 
-export default function Topic({ topic }: { topic: TopicProps }) {
+export default function Topic({ address }: { address: string }) {
+  const [isLoading, setIsLoading] = useState(true)
+  const [topic, setTopic] = useState<TopicProps>()
   const [topicMode, setTopicMode] = useState<ITopicMode>(ITopicMode.BET)
 
   const handleTopicChange = useCallback((mode: ITopicMode) => {
     setTopicMode(mode)
   }, [])
 
+  useEffect(() => {
+    const fetchTopic = async () => {
+      setIsLoading(true)
+      const res = await fetch(`${process.env.apiUrl}/api/topic/${address}`, {
+        headers: { "ngrok-skip-browser-warning": "11" },
+      })
+      const resJson = await res.json()
+      const data = resJson.data
+      console.log(data)
+      setTopic(data)
+      setIsLoading(false)
+    }
+    fetchTopic()
+  }, [address])
+
   return (
     <Container>
       <SectionContainer>
         <FirstSection>
-          <DetailSection topic={topic} />
+          {isLoading ? null : <DetailSection topic={topic as TopicProps} />}
         </FirstSection>
       </SectionContainer>
       <SectionContainer>
@@ -95,10 +112,9 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const { address } = context.query
-  const topic = allTopics.data.find((topic) => topic.address === address)
   return {
     props: {
-      topic,
+      address,
     },
   }
 }

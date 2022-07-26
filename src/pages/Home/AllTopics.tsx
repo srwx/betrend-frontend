@@ -53,8 +53,12 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
   )
   useEffect(() => {
     const fetchAllOrganization = async () => {
-      const res = await axios.get("https://7ab2-171-103-207-66.ap.ngrok.io")
-      console.log(res)
+      const res = await fetch(`${process.env.apiUrl}/api/organizations`, {
+        headers: { "ngrok-skip-browser-warning": "11" },
+      })
+      const resJson = await res.json()
+      console.log(resJson.data)
+      setOrganizationList(resJson.data)
     }
     fetchAllOrganization()
   }, [])
@@ -73,13 +77,13 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
         </SearchContainer>
         {/* Card section */}
         <div className="flex flex-wrap justify-between gap-y-8">
-          {topicList.data.map((topic, i) => (
+          {organizationList.map((o, i) => (
             <OrganizationCard
               key={i}
-              address={topic.address}
-              backgroundUrl={topic.backgroundUrl}
-              title={topic.title}
-              membersCount="1234"
+              address={o.address}
+              backgroundUrl={`/images/allOrganization/card${o.address}.png`}
+              title={o.name}
+              membersCount={o.number_of_people}
             />
           ))}
         </div>

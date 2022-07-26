@@ -30,7 +30,7 @@ interface TopicCardProps {
   address: string
   backgroundUrl: string
   title: string
-  membersCount: string
+  membersCount: number
 }
 
 export const OrganizationCard = ({
@@ -44,7 +44,7 @@ export const OrganizationCard = ({
       <Container url={backgroundUrl}>
         <article
           className={classNames(
-            "text-white px-7 pt-48 pb-10 space-y-7 absolute bottom-0 left-0",
+            "w-full text-white px-7 pt-48 pb-10 space-y-7 absolute bottom-0 left-0",
             "bg-gradient-to-t from-black to-transparent"
           )}
         >
