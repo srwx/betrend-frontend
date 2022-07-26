@@ -30,7 +30,7 @@ export const Header = () => {
           "text-lg text-white font-semibold tracking-wide cursor-pointer"
         )}
       >
-        BeTrend
+        Squeeze
       </div>
       <div
         className={classNames(
@@ -38,9 +38,6 @@ export const Header = () => {
           "flex justify-end items-center gap-8"
         )}
       >
-        <div>Category</div>
-        <div>Ranking</div>
-        <div>More</div>
         <WalletButton />
       </div>
     </Container>

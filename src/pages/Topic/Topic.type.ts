@@ -14,9 +14,9 @@ export interface TopicProps {
   description: string
   category: string
   timeStartBet: string
-  timeStartVote: string
+  timeStart: string
   timeEndBet: string
-  timeEndVote: string
+  timeEnd: string
   totalVoteCount: number
   totalBetCount: number
   prize: number

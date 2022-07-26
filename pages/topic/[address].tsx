@@ -47,7 +47,7 @@ const FirstSection = styled.div`
   z-index: 10;
 `
 
-const SecondSection = styled(FirstSection)` d
+const SecondSection = styled(FirstSection)`
   top: 5rem;
   flex-direction: column;
 `
@@ -74,7 +74,7 @@ export default function Topic({ topic }: { topic: TopicProps }) {
         </FirstSection>
       </SectionContainer>
       <SectionContainer>
-        <BgImage src="/images/allTopics/bg.png" alt="bg" />
+        <BgImage src="/images/allOrganization/bg.png" alt="bg" />
         <SecondSection>
           <Tabs handleTopicChange={handleTopicChange} mode={topicMode} />
           <div className="w-full">

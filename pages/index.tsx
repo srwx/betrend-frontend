@@ -7,9 +7,10 @@ import { AllTopics } from "pages/Home/AllTopics"
 import { SortTopics } from "pages/Home/SortTopics"
 import { Faq } from "pages/Home/Faq"
 import { useRef } from "react"
+import Image from "next/image"
 import PopularTopics from "pages/Home/PopularTopics"
 
-const Container = styled.div`
+export const Container = styled.div`
   background: linear-gradient(
     81.88deg,
     #352489 -14.13%,
@@ -21,13 +22,8 @@ const Container = styled.div`
   align-items: center;
 `
 
-interface BgImageProps {
-  height: string
-}
-
-const BgImage = styled.img<BgImageProps>`
+const BgImage = styled.img`
   width: 100vw;
-  height: ${(props) => props.height};
   z-index: 1;
 `
 
@@ -36,12 +32,15 @@ const Home: NextPage = () => {
   return (
     <Container>
       <HomeHero ref={allTopicsRef} />
-      <div className="relative flex flex-col items-center">
-        <BgImage height="52rem" src="/images/allTopics/bg.png" alt="bg" />
+      {/* allTopics section */}
+      <div className="relative flex justify-center items-center">
+        <BgImage src="/images/allOrganization/bg.png" alt="bg" />
         <AllTopics ref={allTopicsRef} />
       </div>
-      <PopularTopics />
-      <SortTopics />
+      {/* If don't have this div, screen is error */}
+      <div className="h-[70rem]" />
+      {/* <PopularTopics />
+      <SortTopics /> */}
       {/* TODO: FAQ's section */}
       {/* <div className="relative flex flex-col items-center pt-32">
         <BgImage height="50rem" src="/images/faq-bg.png" alt="bg" />

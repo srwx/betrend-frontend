@@ -38,9 +38,9 @@ export const DetailSection = ({ topic }: { topic: TopicProps }) => {
     isBet,
     isActive,
     timeStartBet,
-    timeStartVote,
+    timeStart,
     timeEndBet,
-    timeEndVote,
+    timeEnd,
   } = topic
   const informationLists: information[] = [
     {
@@ -49,11 +49,11 @@ export const DetailSection = ({ topic }: { topic: TopicProps }) => {
     },
     {
       mainText: "Start Date",
-      secondaryText: isVote ? timeStartVote : timeStartBet,
+      secondaryText: isVote ? timeStart : timeStartBet,
     },
     {
       mainText: "End Date",
-      secondaryText: isVote ? timeEndVote : timeEndBet,
+      secondaryText: isVote ? timeEnd : timeEndBet,
     },
   ]
   return (
