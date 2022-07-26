@@ -14,6 +14,7 @@ const OrganizationContainer = styled(Container)`
   padding-right: 100px;
   padding-top: 3.5rem;
   row-gap: 6rem;
+  position: relative;
 `
 export default function Organization({
   imgUrl,
@@ -51,7 +52,7 @@ export default function Organization({
         </div>
       </div>
       {/* All Posts section */}
-      <div className="relative w-full max-w-[1314px] space-y-10">
+      <div className="w-full max-w-[1314px] space-y-10">
         {/* All Post text*/}
         <div className="text-white flex justify-between items-center">
           <span className="text-3xl font-semibold">All Posts</span>
@@ -67,11 +68,11 @@ export default function Organization({
             />
           ))}
         </div>
-        <div className="absolute bottom-28 -right-[3rem] cursor-pointer">
+        <div className="fixed bottom-5 right-8 cursor-pointer">
           <Image
             src="/images/icons/create.png"
-            width="100px"
-            height="100px"
+            width="80px"
+            height="80px"
             alt="button"
           />
         </div>
