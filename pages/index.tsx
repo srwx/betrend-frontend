@@ -10,7 +10,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import PopularTopics from "pages/Home/PopularTopics"
 
-const Container = styled.div`
+export const Container = styled.div`
   background: linear-gradient(
     81.88deg,
     #352489 -14.13%,
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       <HomeHero ref={allTopicsRef} />
       {/* allTopics section */}
       <div className="relative flex justify-center items-center">
-        <BgImage src="/images/allTopics/bg.png" alt="bg" />
+        <BgImage src="/images/allOrganization/bg.png" alt="bg" />
         <AllTopics ref={allTopicsRef} />
       </div>
       {/* If don't have this div, screen is error */}

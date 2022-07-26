@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { TopicCard } from "component/TopicCard/TopicCard"
+import { OrganizationCard } from "component/OrganizationCard/OrganizationCard"
 import Image from "next/image"
 import React, { forwardRef } from "react"
 import styled from "styled-components"
@@ -59,7 +59,7 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
         {/* Card section */}
         <div className="flex flex-wrap justify-between gap-y-8">
           {topicList.data.map((topic, i) => (
-            <TopicCard
+            <OrganizationCard
               key={i}
               address={topic.address}
               backgroundUrl={topic.backgroundUrl}
@@ -71,7 +71,7 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
         {/* Button section */}
         <div className="cursor-pointer">
           <Image
-            src="/images/allTopics/seeMoreButton.png"
+            src="/images/allOrganization/seeMoreButton.png"
             alt="button"
             width="240px"
             height="70px"

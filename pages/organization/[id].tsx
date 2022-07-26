@@ -1,0 +1,71 @@
+import { OrganizationHorizontalCard } from "component/OrganizationHorizontalCard/OrganizationHorizontalCard"
+import { TopicCard } from "component/TopicCard/TopicCard"
+import { GetServerSidePropsContext } from "next/types"
+import { Container } from "pages"
+import React from "react"
+import { TopicProps } from "src/types/topic.type"
+import allTopics from "src/utils/getAllTopics.json"
+import styled from "styled-components"
+
+const OrganizationContainer = styled(Container)`
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 4rem;
+  row-gap: 5rem;
+`
+export default function Organization({
+  imgUrl,
+  pollList,
+  questionList,
+}: {
+  imgUrl: string
+  pollList: TopicProps[]
+  questionList: TopicProps[]
+}) {
+  return (
+    <OrganizationContainer>
+      <OrganizationHorizontalCard img={imgUrl} />
+      {/* All Polls section*/}
+      <div className="w-full max-w-[1314px] space-y-12">
+        {/* All Polls text*/}
+        <div className="text-white flex justify-between items-center">
+          <span className="text-3xl font-semibold">All Polls</span>
+          <span className="font-light">See all</span>
+        </div>
+        {/* Poll list (Card) */}
+        <div className="flex justify-between flex-wrap gap-y-8">
+          {pollList.map((poll, i) => (
+            <TopicCard
+              key={i}
+              no={poll.no}
+              address={poll.address}
+              choiceCount={poll.responses.length}
+              isActive={poll.isActive}
+              responseCount={poll.responseCount}
+              title={poll.title}
+            />
+          ))}
+        </div>
+      </div>
+    </OrganizationContainer>
+  )
+}
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { address } = context.query
+  //   const imgUrl = `/images/allOrganization/card${address}s`
+  const imgUrl = "/images/allOrganization/card1s.png"
+  const pollList = allTopics.data.filter((topic) => topic.category === "poll")
+  const questionList = allTopics.data.filter(
+    (topic) => topic.category === "question"
+  )
+  return {
+    props: {
+      imgUrl,
+      pollList,
+      questionList,
+    },
+  }
+}
