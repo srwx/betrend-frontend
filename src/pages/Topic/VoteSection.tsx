@@ -7,7 +7,7 @@ import QuestionSection, {
 import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
 import Image from "next/image"
 import { HardCodeContractAddress } from "src/constants/const"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import useConnectWeb3React from "src/hooks/useConnectWeb3React"
 import { voteService } from "src/services/VoteService"
 import styled from "styled-components"
@@ -16,6 +16,7 @@ interface IVoteProps {
   canVote?: boolean
   sectionStatus?: SectionStatus
   choiceSelect: string
+  questionName: string
   toggleChange: () => void
 }
 
@@ -54,30 +55,24 @@ const mockData: { title: string; numberOfVote: number }[] = sampleChoice.map(
     return { title: data, numberOfVote: (index + 1) * 10 }
   }
 )
-const sumMockData = mockData.reduce(
+const sumVoteData = mockData.reduce(
   (prevValue, data) => prevValue + data.numberOfVote,
   0
 )
-
-const maxScore = Math.max(
-  ...mockData.map((data) => {
-    return data.numberOfVote
-  })
-)
-
-const winner = mockData.find((data) => {
-  return data.numberOfVote === maxScore
-})
 
 const VoteSection = ({
   sampleChoice,
   canVote = true,
   sectionStatus = SectionStatus.FINISH,
   choiceSelect,
+  questionName,
   toggleChange,
 }: IVoteProps) => {
   const { account, library } = useConnectWeb3React()
   const [selectChoice, setSelectChoice] = useState<string>("")
+  const [finalResultData, setFinalResultData] = useState<
+    { title: string; numberOfVote: number }[]
+  >([])
   const handleOnSelect = useCallback((selectChoice: string) => {
     setSelectChoice(selectChoice)
   }, [])
@@ -87,7 +82,6 @@ const VoteSection = ({
       const choiceId = sampleChoice.findIndex(
         (choiceName) => choiceName === selectChoice
       )
-      console.log("choiceId =", choiceId)
       if (choiceId !== 0 && !choiceId) {
         return
       }
@@ -106,6 +100,42 @@ const VoteSection = ({
     setSelectChoice(choiceSelect)
   }, [choiceSelect])
 
+  useEffect(() => {
+    const fetchVoteResult = async () => {
+      if (!library) {
+        return
+      }
+      if (sectionStatus === SectionStatus.FINISH) {
+        const response = await voteService.fetchVoteData(
+          library,
+          HardCodeContractAddress,
+          sampleChoice.length
+        )
+        if (response && response.length > 0) {
+          setFinalResultData(response)
+        }
+      }
+    }
+    fetchVoteResult()
+  }, [library, sampleChoice.length, sectionStatus])
+
+  const [sumVoteData, maxScore, winner] = useMemo(() => {
+    const _sumVoteData = finalResultData.reduce(
+      (prevValue, data) => prevValue + data.numberOfVote,
+      0
+    )
+    const _maxScore = Math.max(
+      ...finalResultData.map((data) => {
+        return data.numberOfVote
+      })
+    )
+
+    const _winner = finalResultData.find((data) => {
+      return data.numberOfVote === _maxScore
+    })
+    return [_sumVoteData, _maxScore, _winner] as const
+  }, [finalResultData])
+
   return (
     <>
       {sectionStatus === SectionStatus.INPROGRESS && (
@@ -116,6 +146,7 @@ const VoteSection = ({
           handleOnSelect={handleOnSelect}
           disabledChoice={!canVote}
           choiceVote={choiceSelect}
+          questionName={questionName}
         />
       )}
       {sectionStatus === SectionStatus.INPROGRESS && canVote && (
@@ -141,7 +172,7 @@ const VoteSection = ({
       {sectionStatus === SectionStatus.SUCCESS && (
         <>
           <div className="text-white font-bold text-3xl relative z-10">
-            What do you think the price of Bitcoin will be in 2030?
+            {questionName}
           </div>
           <div className="my-8">
             {sampleChoice.map((eachChoice) => (
@@ -165,22 +196,29 @@ const VoteSection = ({
 
           <div className="w-full border border-[rgba(255,255,255,0.4)] my-8"></div>
           <div className="text-white font-bold text-2xl relative z-10 mb-8">
-            What do you think the price of Bitcoin will be in 2030?
+            {questionName}
           </div>
-          {mockData.map((data) => {
+          {finalResultData.map((data) => {
             return (
               <div
                 key={data.title}
                 className="flex flex-col justify-center items-start"
               >
-                <div className="text-white font-bold text-xl">{data.title}</div>
                 <div className="flex justify-start items-center w-full">
                   <div
                     className={classNames(
-                      "w-full border h-[60px] px-4 mx-4 my-4 rounded-[10px] relative flex justify-end items-center"
+                      "w-full border h-[60px] px-4 mx-4 my-4 rounded-[10px] relative flex justify-between items-center"
                     )}
                   >
-                    {winner?.title !== selectChoice && (
+                    <div className="flex flex-row gap-x-4 relative z-50">
+                      <div className="text-white font-bold text-xl flex flex-row gap-x-4">
+                        {data.title}
+                      </div>
+                      <div className="text-white font-bold text-xl flex flex-row gap-x-4">
+                        {((data.numberOfVote * 100) / sumVoteData).toFixed(3)} %
+                      </div>
+                    </div>
+                    {winner?.title === data.title && (
                       <div className="flex h-full justify-center items-center">
                         <Image
                           src="/images/icons/checked.svg"
@@ -193,17 +231,9 @@ const VoteSection = ({
 
                     {/*<div className="absolute w-[50%] bg-gray-500 left-0 bottom-0 py-[27px] rounded-[10px]"></div>*/}
                     <BarChart
-                      width={(data.numberOfVote * 100) / sumMockData}
+                      width={(data.numberOfVote * 95) / sumVoteData}
                       winner={data.numberOfVote === maxScore}
                     />
-                  </div>
-                  <div
-                    className={classNames(
-                      "text-start text-white font-bold w-[100px]",
-                      {}
-                    )}
-                  >
-                    {((data.numberOfVote * 100) / sumMockData).toFixed(3)} %
                   </div>
                 </div>
               </div>

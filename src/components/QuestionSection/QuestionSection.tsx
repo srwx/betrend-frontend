@@ -7,9 +7,10 @@ interface IQuestionSectionProps {
   sampleChoice: string[]
   mode: ITopicMode
   selectChoice: string
-  handleOnSelect: (selectChoice: string) => void
   disabledChoice: boolean
   choiceVote: string
+  questionName: string
+  handleOnSelect: (selectChoice: string) => void
 }
 
 interface IQuestionTitleProps {
@@ -45,19 +46,17 @@ const QuestionSection = ({
   selectChoice,
   disabledChoice,
   choiceVote,
+  questionName,
   handleOnSelect,
 }: IQuestionSectionProps) => {
   return (
     <>
       {mode === ITopicMode.VOTE ? (
         <div className="text-white font-bold text-3xl relative z-10">
-          What do you think the price of Bitcoin will be in 2030?
+          {questionName}
         </div>
       ) : (
-        <QuestionTitle
-          title="What do you think the price of Bitcoin will be in 2030?"
-          amount="0"
-        />
+        <QuestionTitle title={questionName} amount="0" />
       )}
       <div className="my-8">
         {sampleChoice.map((eachChoice) => (
