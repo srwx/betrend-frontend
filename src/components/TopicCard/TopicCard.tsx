@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { Active, Bet, Closed, Vote } from "component/Status/Status"
+import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import styled from "styled-components"
@@ -29,36 +30,33 @@ interface TopicCardProps {
   address: string
   backgroundUrl: string
   title: string
-  deadline: string
-  isVote?: boolean
-  isActive?: boolean
+  membersCount: string
 }
 
 export const TopicCard = ({
   address,
   backgroundUrl,
   title,
-  deadline,
-  isVote,
-  isActive,
+  membersCount,
 }: TopicCardProps) => {
   return (
     <Link href={`/topic/${address}`}>
       <Container url={backgroundUrl}>
-        <div className="w-[55%] self-end flex gap-2 justify-end pr-[0.8rem]">
-          {isVote ? <Vote /> : <Bet />}
-          {isActive ? <Active /> : <Closed />}
-        </div>
         <article
           className={classNames(
-            "text-white px-5 pt-48 pb-10 space-y-7 absolute bottom-0 left-0",
+            "text-white px-7 pt-48 pb-10 space-y-7 absolute bottom-0 left-0",
             "bg-gradient-to-t from-black to-transparent"
           )}
         >
           <h1 className="text-3xl font-semibold">{title}</h1>
-          <div className="flex justify-between">
-            <span>End Date:</span>
-            <span>{deadline}</span>
+          <div className="flex gap-x-4">
+            <Image
+              src="/images/icons/user.png"
+              alt="icon"
+              width="25px"
+              height="25px"
+            />
+            <span>{membersCount} Members in Community</span>
           </div>
         </article>
       </Container>
