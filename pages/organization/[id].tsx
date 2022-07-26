@@ -1,6 +1,7 @@
 import { OrganizationHorizontalCard } from "component/OrganizationHorizontalCard/OrganizationHorizontalCard"
 import { PostCard } from "component/PostCard/PostCard"
 import { TopicCard } from "component/TopicCard/TopicCard"
+import Image from "next/image"
 import { GetServerSidePropsContext } from "next/types"
 import { Container } from "pages"
 import React from "react"
@@ -32,7 +33,7 @@ export default function Organization({
         {/* All Polls text*/}
         <div className="text-white flex justify-between items-center">
           <span className="text-3xl font-semibold">All Polls</span>
-          <span className="font-light">See all</span>
+          <span className="font-light underline">See all</span>
         </div>
         {/* Poll list (Card) */}
         <div className="flex justify-between flex-wrap gap-y-8">
@@ -50,11 +51,11 @@ export default function Organization({
         </div>
       </div>
       {/* All Posts section */}
-      <div className="w-full max-w-[1314px] space-y-10">
+      <div className="relative w-full max-w-[1314px] space-y-10">
         {/* All Post text*/}
         <div className="text-white flex justify-between items-center">
           <span className="text-3xl font-semibold">All Posts</span>
-          <span className="font-light">See all</span>
+          <span className="font-light underline">See all</span>
         </div>
         {/* Post list (Card) */}
         <div className="flex justify-between flex-wrap gap-y-8 pb-44">
@@ -65,6 +66,14 @@ export default function Organization({
               startDate={question.timeStart}
             />
           ))}
+        </div>
+        <div className="absolute bottom-28 -right-[3rem] cursor-pointer">
+          <Image
+            src="/images/icons/create.png"
+            width="100px"
+            height="100px"
+            alt="button"
+          />
         </div>
       </div>
     </OrganizationContainer>

@@ -44,7 +44,7 @@ export const TopicCard = ({
   choiceCount: number
 }) => {
   return (
-    <Link href={`/organization/${address}`}>
+    <Link href={`/topic/${address}`}>
       <Container url={`/images/allTopics/card${no}.png`}>
         <div className="self-end">{isActive ? <Active /> : <Closed />}</div>
         <article
