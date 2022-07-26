@@ -85,7 +85,6 @@ export default function Topic({ topic }: { topic: TopicProps }) {
     choices: [],
     voteStartAt: BigNumber.from(1),
     voteEndAt: BigNumber.from(1),
-    questionName: "",
   })
   const [voteStatus, setVoteStatus] = useState<boolean>(false)
   const [choiceVote, setChoiceVote] = useState<string>("")
@@ -114,6 +113,7 @@ export default function Topic({ topic }: { topic: TopicProps }) {
         account,
         library
       )
+      console.log(voteChoice)
       setVoteStatus(voteChoice !== "")
       setChoiceVote(voteChoice)
     }
@@ -148,7 +148,6 @@ export default function Topic({ topic }: { topic: TopicProps }) {
         <SecondSection>
           <div className="w-full pt-[6rem]">
             <VoteSection
-              questionName={voteData.questionName}
               sampleChoice={voteData.choices}
               sectionStatus={sectionStatus}
               canVote={!voteStatus}

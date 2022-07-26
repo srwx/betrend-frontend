@@ -7,7 +7,6 @@ export interface IVoteDataInterface {
   voteStartAt: BigNumber
   voteEndAt: BigNumber
   choices: string[]
-  questionName: string
 }
 
 class VoteService {
@@ -71,48 +70,16 @@ class VoteService {
       const contract = new MulticallContract(contractAddress, VoteServiceAbi)
       const getTimestampdata = contract.getTimeStampData()
       const getAllChoices = contract.getAllChoices()
-      const getQuestion = contract.questionName()
-      const [[voteStartAt, voteEndAt], choices, questionName] =
-        await provider.all([getTimestampdata, getAllChoices, getQuestion])
+      const [[voteStartAt, voteEndAt], choices] = await provider.all([
+        getTimestampdata,
+        getAllChoices,
+      ])
 
       return {
         voteStartAt: voteStartAt as BigNumber,
         voteEndAt: voteEndAt as BigNumber,
         choices: choices as string[],
-        questionName: questionName as string,
       }
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  async fetchVoteData(
-    library: Web3Provider,
-    contractAddress: string,
-    numberOfChoices: number
-  ) {
-    try {
-      const provider = new Provider(library)
-      await provider.init()
-      const contract = new MulticallContract(contractAddress, VoteServiceAbi)
-      const callFn = Array.from(Array(numberOfChoices).keys()).map((idx) => {
-        return contract.getChoiceData(idx)
-      })
-      const data = await provider.all(callFn)
-      const reduceData: { title: string; numberOfVote: number }[] = data.reduce(
-        (prevValue, currentValue) => {
-          return [
-            ...prevValue,
-            {
-              title: currentValue[1],
-              numberOfVote: currentValue[0].toNumber(),
-            },
-          ]
-        },
-        []
-      )
-
-      return reduceData
     } catch (err) {
       console.log(err)
     }
