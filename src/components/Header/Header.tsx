@@ -2,6 +2,7 @@ import classNames from "classnames"
 import { WalletButton } from "component/Button/WalletButton/WalletButton"
 import React from "react"
 import styled from "styled-components"
+import useConnectWallet from "src/hooks/useConnectWallet"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -23,6 +24,8 @@ const Container = styled.div`
 `
 
 export const Header = () => {
+  const [handleConnectWallet, account] = useConnectWallet()
+
   return (
     <Container>
       <div
@@ -38,7 +41,11 @@ export const Header = () => {
           "flex justify-end items-center gap-8"
         )}
       >
-        <WalletButton />
+        {account ? (
+          <div>{account}</div>
+        ) : (
+          <WalletButton onClick={handleConnectWallet} />
+        )}
       </div>
     </Container>
   )

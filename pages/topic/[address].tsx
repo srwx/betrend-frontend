@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react"
-import allTopics from "src/pages/Home/utils/getAllTopics.json"
-import styled from "styled-components"
-import { DetailSection } from "pages/Topic/DetailSection"
-import BetSection from "pages/Topic/BetSection"
-import VoteSection from "pages/Topic/VoteSection"
+import { BigNumber } from "ethers"
 import { GetServerSidePropsContext } from "next"
-import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
-import Tabs from "component/Tabs"
-import { TopicProps } from "src/types/topic.type"
+import { DetailSection } from "pages/Topic/DetailSection"
+import { TopicProps } from "pages/Topic/Topic.type"
+import VoteSection, { SectionStatus } from "pages/Topic/VoteSection"
+import { useState, useMemo, useCallback, useEffect } from "react"
+import { HardCodeContractAddress } from "src/constants/const"
+import useConnectWeb3React from "src/hooks/useConnectWeb3React"
+import { IVoteDataInterface, voteService } from "src/services/VoteService"
+import styled from "styled-components"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -23,7 +23,7 @@ const Container = styled.div`
 `
 const BgImage = styled.img`
   width: 100vw;
-  height: 50rem;
+  height: 40rem;
   z-index: 1;
   position: absolute;
   top: 0px;
@@ -50,22 +50,51 @@ const FirstSection = styled.div`
 const SecondSection = styled(FirstSection)`
   top: 5rem;
   flex-direction: column;
+  padding-bottom: 10rem;
 `
 
-const sampleChoice = [
-  "Lower than 100,000$",
-  "Between 100,000$ - 500,000$",
-  "Between 500,000$ - 1,000,000$",
-  "Higher than 1,000,000$",
-]
+const sectionStatusMapping = (
+  utcTime: BigNumber,
+  startTime: BigNumber,
+  endTime: BigNumber
+) => {
+  if (utcTime < startTime) {
+    return SectionStatus.UNAVAILABLE
+  }
+  if (startTime <= utcTime && utcTime <= endTime) {
+    return SectionStatus.INPROGRESS
+  }
+  if (utcTime > endTime) {
+    return SectionStatus.FINISH
+  }
+  return SectionStatus.UNAVAILABLE
+}
 
 export default function Topic({ address }: { address: string }) {
   const [isLoading, setIsLoading] = useState(true)
   const [topic, setTopic] = useState<TopicProps>()
-  const [topicMode, setTopicMode] = useState<ITopicMode>(ITopicMode.BET)
 
-  const handleTopicChange = useCallback((mode: ITopicMode) => {
-    setTopicMode(mode)
+  const { account, library } = useConnectWeb3React()
+  const [voteData, setVoteData] = useState<IVoteDataInterface>({
+    choices: [],
+    voteStartAt: BigNumber.from(1),
+    voteEndAt: BigNumber.from(1),
+    questionName: "",
+  })
+  const [voteStatus, setVoteStatus] = useState<boolean>(false)
+  const [choiceVote, setChoiceVote] = useState<string>("")
+  const [change, setChange] = useState<boolean>(false)
+  const sectionStatus: SectionStatus = useMemo(() => {
+    const utcNowtime = BigNumber.from(new Date().getTime())
+    return sectionStatusMapping(
+      utcNowtime,
+      voteData.voteStartAt,
+      voteData.voteEndAt
+    )
+  }, [voteData.voteStartAt, voteData.voteEndAt])
+
+  const toggleChange = useCallback(() => {
+    setChange((prevState) => !prevState)
   }, [])
 
   useEffect(() => {
@@ -83,6 +112,39 @@ export default function Topic({ address }: { address: string }) {
     fetchTopic()
   }, [address])
 
+  useEffect(() => {
+    const fetchVoteStatus = async () => {
+      if (!account || !library) {
+        setVoteStatus(false)
+        return
+      }
+      const voteChoice = await voteService.getUserVoteStatus(
+        HardCodeContractAddress,
+        account,
+        library
+      )
+      setVoteStatus(voteChoice !== "")
+      setChoiceVote(voteChoice)
+    }
+    fetchVoteStatus()
+  }, [account, change, library])
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      if (!library) {
+        return
+      }
+      const result = await voteService.fetchInitialData(
+        library,
+        HardCodeContractAddress
+      )
+      if (result) {
+        setVoteData(result)
+      }
+    }
+    fetchInitialData()
+  }, [library])
+
   return (
     <Container>
       <SectionContainer>
@@ -93,14 +155,15 @@ export default function Topic({ address }: { address: string }) {
       <SectionContainer>
         <BgImage src="/images/allOrganization/bg.png" alt="bg" />
         <SecondSection>
-          <Tabs handleTopicChange={handleTopicChange} mode={topicMode} />
-          <div className="w-full">
-            {topicMode === ITopicMode.VOTE && (
-              <VoteSection sampleChoice={sampleChoice} />
-            )}
-            {topicMode === ITopicMode.BET && (
-              <BetSection sampleChoice={sampleChoice} />
-            )}
+          <div className="w-full pt-[6rem]">
+            <VoteSection
+              questionName={voteData.questionName}
+              sampleChoice={voteData.choices}
+              sectionStatus={sectionStatus}
+              canVote={!voteStatus}
+              toggleChange={toggleChange}
+              choiceSelect={choiceVote}
+            />
           </div>
         </SecondSection>
       </SectionContainer>

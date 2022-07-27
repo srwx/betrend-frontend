@@ -21,9 +21,13 @@ const Container = styled.div`
     background: #8a3bf0;
   }
 `
-export const WalletButton = () => {
+interface IWalletButtonProps {
+  onClick: () => void
+}
+
+export const WalletButton = ({ onClick }: IWalletButtonProps) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Image
         src="/images/icons/wallet.png"
         alt="wallet icon"

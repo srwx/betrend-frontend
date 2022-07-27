@@ -7,6 +7,9 @@ interface IQuestionSectionProps {
   sampleChoice: string[]
   mode: ITopicMode
   selectChoice: string
+  disabledChoice: boolean
+  choiceVote: string
+  questionName: string
   handleOnSelect: (selectChoice: string) => void
 }
 
@@ -41,19 +44,19 @@ const QuestionSection = ({
   sampleChoice,
   mode,
   selectChoice,
+  disabledChoice,
+  choiceVote,
+  questionName,
   handleOnSelect,
 }: IQuestionSectionProps) => {
   return (
     <>
       {mode === ITopicMode.VOTE ? (
         <div className="text-white font-bold text-3xl relative z-10">
-          What do you think the price of Bitcoin will be in 2030?
+          {questionName}
         </div>
       ) : (
-        <QuestionTitle
-          title="What do you think the price of Bitcoin will be in 2030?"
-          amount="0"
-        />
+        <QuestionTitle title={questionName} amount="0" />
       )}
       <div className="my-8">
         {sampleChoice.map((eachChoice) => (
@@ -64,6 +67,8 @@ const QuestionSection = ({
             onClick={() => {
               handleOnSelect(eachChoice)
             }}
+            isVote={choiceVote === eachChoice}
+            disabled={disabledChoice}
           />
         ))}
       </div>
