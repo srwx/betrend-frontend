@@ -83,9 +83,9 @@ export const HomeHero = forwardRef<HTMLDivElement>((_, ref) => {
         <div className="flex-[0.5] space-y-10">
           <article className={classNames("text-white space-y-6")}>
             <h1 className={classNames("text-5xl font-semibold")}>
-              The Easiest Way to
+              Transparent Democratic
               <br />
-              Drive in Trend with{" "}
+              Vote with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A6C7] to-[#20FDA5] font-semibold">
                 DAO
               </span>
