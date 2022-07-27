@@ -1,7 +1,9 @@
+import axios from "axios"
 import classNames from "classnames"
 import { OrganizationCard } from "component/OrganizationCard/OrganizationCard"
 import Image from "next/image"
-import React, { forwardRef } from "react"
+import React, { forwardRef, useEffect, useState } from "react"
+import { OrganizationProps } from "src/types/organization.type"
 import styled from "styled-components"
 import { HomeContainer } from "styles/index"
 import topicList from "./utils/getAllTopics.json"
@@ -42,7 +44,24 @@ const Container = styled(HomeContainer)`
   scroll-margin: 4.8rem;
 `
 
+interface GetAllOrganizationResponse {
+  data: OrganizationProps[]
+}
 export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
+  const [organizationList, setOrganizationList] = useState<OrganizationProps[]>(
+    []
+  )
+  useEffect(() => {
+    const fetchAllOrganization = async () => {
+      const res = await fetch(`${process.env.apiUrl}/api/organizations`, {
+        headers: { "ngrok-skip-browser-warning": "11" },
+      })
+      const resJson = await res.json()
+      console.log(resJson.data)
+      setOrganizationList(resJson.data)
+    }
+    fetchAllOrganization()
+  }, [])
   return (
     <Container ref={ref}>
       <div className="flex flex-col justify-center items-center px-[2.5rem] py-[1rem] space-y-16">
@@ -58,13 +77,13 @@ export const AllTopics = forwardRef<HTMLDivElement>((_, ref) => {
         </SearchContainer>
         {/* Card section */}
         <div className="flex flex-wrap justify-between gap-y-8">
-          {topicList.data.map((topic, i) => (
+          {organizationList.map((o, i) => (
             <OrganizationCard
               key={i}
-              address={topic.address}
-              backgroundUrl={topic.backgroundUrl}
-              title={topic.title}
-              membersCount="1234"
+              address={o.address}
+              backgroundUrl={`/images/allOrganization/card${o.address}.png`}
+              title={o.name}
+              membersCount={o.number_of_people}
             />
           ))}
         </div>

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "@ethersproject/providers": "^5.6.8",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",

@@ -2,16 +2,14 @@ import { ScrollToVoteButton } from "component/Button/ScrollToVoteButton/ScrollTo
 import { Active, Bet, Closed, Vote } from "component/Status/Status"
 import Image from "next/image"
 import React from "react"
-import { TopicProps } from "./Topic.type"
+import { TopicProps } from "src/types/topic.type"
 
 const Information = ({
   mainText,
   secondaryText,
-  isVote,
 }: {
   mainText: string
   secondaryText: string
-  isVote: boolean
 }) => {
   return (
     <div className="w-full space-y-5">
@@ -30,18 +28,8 @@ interface information {
 }
 
 export const DetailSection = ({ topic }: { topic: TopicProps }) => {
-  const {
-    bgBigUrl,
-    title,
-    description,
-    isVote,
-    isBet,
-    isActive,
-    timeStartBet,
-    timeStart,
-    timeEndBet,
-    timeEnd,
-  } = topic
+  console.log("topic", topic)
+  const { title, description, isActive, timeStart, timeEnd, no } = topic
   const informationLists: information[] = [
     {
       mainText: "Voting System",
@@ -49,11 +37,11 @@ export const DetailSection = ({ topic }: { topic: TopicProps }) => {
     },
     {
       mainText: "Start Date",
-      secondaryText: isVote ? timeStart : timeStartBet,
+      secondaryText: timeStart,
     },
     {
       mainText: "End Date",
-      secondaryText: isVote ? timeEnd : timeEndBet,
+      secondaryText: timeEnd,
     },
   ]
   return (
@@ -61,17 +49,14 @@ export const DetailSection = ({ topic }: { topic: TopicProps }) => {
       {/* Header section */}
       <div className="w-full flex justify-between items-center">
         <span className="text-white font-semibold text-4xl">{title}</span>
-        <div className="flex gap-4">
-          {isVote ? <Vote /> : <Bet />}
-          {isActive ? <Active /> : <Closed />}
-        </div>
+        <div className="flex gap-4">{isActive ? <Active /> : <Closed />}</div>
       </div>
       {/* Content section */}
       <div className="w-full flex justify-between">
         {/* Left section */}
         <div className="flex-[0.47] rounded-2xl overflow-hidden relative h-[40rem]">
           <Image
-            src={bgBigUrl}
+            src={`/images/allTopics/card${no}.png`}
             alt="bg"
             layout="fill"
             objectFit="cover"
@@ -91,7 +76,6 @@ export const DetailSection = ({ topic }: { topic: TopicProps }) => {
                 key={information.mainText}
                 mainText={information.mainText}
                 secondaryText={information.secondaryText}
-                isVote={isVote}
               />
             ))}
           </div>

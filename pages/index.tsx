@@ -39,13 +39,6 @@ const Home: NextPage = () => {
       </div>
       {/* If don't have this div, screen is error */}
       <div className="h-[70rem]" />
-      {/* <PopularTopics />
-      <SortTopics /> */}
-      {/* TODO: FAQ's section */}
-      {/* <div className="relative flex flex-col items-center pt-32">
-        <BgImage height="50rem" src="/images/faq-bg.png" alt="bg" />
-        <Faq />
-      </div> */}
     </Container>
   )
 }

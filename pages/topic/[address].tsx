@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import allTopics from "src/pages/Home/utils/getAllTopics.json"
-import styled from "styled-components"
-import { DetailSection } from "pages/Topic/DetailSection"
-import { TopicProps } from "pages/Topic/Topic.type"
-import { SectionStatus } from "pages/Topic/VoteSection"
-import VoteSection from "pages/Topic/VoteSection"
-import { GetServerSidePropsContext } from "next"
 import { BigNumber } from "ethers"
+import { GetServerSidePropsContext } from "next"
+import { DetailSection } from "pages/Topic/DetailSection"
+import { TopicProps } from "src/types/topic.type"
+import VoteSection, { SectionStatus } from "pages/Topic/VoteSection"
+import { useState, useMemo, useCallback, useEffect } from "react"
+import { HardCodeContractAddress } from "src/constants/const"
 import useConnectWeb3React from "src/hooks/useConnectWeb3React"
 import { IVoteDataInterface, voteService } from "src/services/VoteService"
-import { HardCodeContractAddress } from "src/constants/const"
+import styled from "styled-components"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -55,13 +53,6 @@ const SecondSection = styled(FirstSection)`
   padding-bottom: 10rem;
 `
 
-const sampleChoice = [
-  "Lower than 100,000$",
-  "Between 100,000$ - 500,000$",
-  "Between 500,000$ - 1,000,000$",
-  "Higher than 1,000,000$",
-]
-
 const sectionStatusMapping = (
   utcTime: BigNumber,
   startTime: BigNumber,
@@ -79,7 +70,10 @@ const sectionStatusMapping = (
   return SectionStatus.UNAVAILABLE
 }
 
-export default function Topic({ topic }: { topic: TopicProps }) {
+export default function Topic({ address }: { address: string }) {
+  const [isLoading, setIsLoading] = useState(true)
+  const [topic, setTopic] = useState<TopicProps>()
+
   const { account, library } = useConnectWeb3React()
   const [voteData, setVoteData] = useState<IVoteDataInterface>({
     choices: [],
@@ -102,6 +96,21 @@ export default function Topic({ topic }: { topic: TopicProps }) {
   const toggleChange = useCallback(() => {
     setChange((prevState) => !prevState)
   }, [])
+
+  useEffect(() => {
+    const fetchTopic = async () => {
+      setIsLoading(true)
+      const res = await fetch(`${process.env.apiUrl}/api/topic/${address}`, {
+        headers: { "ngrok-skip-browser-warning": "11" },
+      })
+      const resJson = await res.json()
+      const data = resJson.data
+      console.log(data)
+      setTopic(data)
+      setIsLoading(false)
+    }
+    fetchTopic()
+  }, [address])
 
   useEffect(() => {
     const fetchVoteStatus = async () => {
@@ -140,7 +149,7 @@ export default function Topic({ topic }: { topic: TopicProps }) {
     <Container>
       <SectionContainer>
         <FirstSection>
-          <DetailSection topic={topic} />
+          {isLoading ? null : <DetailSection topic={topic as TopicProps} />}
         </FirstSection>
       </SectionContainer>
       <SectionContainer>
@@ -166,10 +175,9 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const { address } = context.query
-  const topic = allTopics.data.find((topic) => topic.address === address)
   return {
     props: {
-      topic,
+      address,
     },
   }
 }
