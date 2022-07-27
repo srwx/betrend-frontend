@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    apiUrl: "https://db7f-49-228-107-196.ap.ngrok.io",
+    apiUrl: "https://c772-171-103-207-66.ap.ngrok.io",
   },
 }
 
