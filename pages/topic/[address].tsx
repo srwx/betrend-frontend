@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers"
 import { GetServerSidePropsContext } from "next"
 import { DetailSection } from "pages/Topic/DetailSection"
-import { TopicProps } from "pages/Topic/Topic.type"
+import { TopicProps } from "src/types/topic.type"
 import VoteSection, { SectionStatus } from "pages/Topic/VoteSection"
 import { useState, useMemo, useCallback, useEffect } from "react"
 import { HardCodeContractAddress } from "src/constants/const"

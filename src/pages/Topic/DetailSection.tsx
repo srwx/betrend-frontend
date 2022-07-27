@@ -28,6 +28,7 @@ interface information {
 }
 
 export const DetailSection = ({ topic }: { topic: TopicProps }) => {
+  console.log("topic", topic)
   const { title, description, isActive, timeStart, timeEnd, no } = topic
   const informationLists: information[] = [
     {
