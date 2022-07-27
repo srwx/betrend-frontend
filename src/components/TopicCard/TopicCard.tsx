@@ -71,7 +71,7 @@ export const TopicCard = ({
                 width="25px"
                 height="25px"
               />
-              <span>{responseCount} Voters</span>
+              <span>{choiceCount} Options</span>
             </div>
           </div>
         </article>
