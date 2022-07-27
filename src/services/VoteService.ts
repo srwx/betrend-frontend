@@ -92,6 +92,7 @@ class VoteService {
     numberOfChoices: number
   ) {
     try {
+      console.log(contractAddress)
       const provider = new Provider(library)
       await provider.init()
       const contract = new MulticallContract(contractAddress, VoteServiceAbi)
@@ -111,7 +112,6 @@ class VoteService {
         },
         []
       )
-
       return reduceData
     } catch (err) {
       console.log(err)

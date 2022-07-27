@@ -6,7 +6,6 @@ import QuestionSection, {
 } from "component/QuestionSection/QuestionSection"
 import { ITopicMode } from "component/QuestionSection/QuestionSection.type"
 import Image from "next/image"
-import { HardCodeContractAddress } from "src/constants/const"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import useConnectWeb3React from "src/hooks/useConnectWeb3React"
 import { voteService } from "src/services/VoteService"
@@ -17,6 +16,7 @@ interface IVoteProps {
   sectionStatus?: SectionStatus
   choiceSelect: string
   questionName: string
+  contractAddress: string | undefined
   toggleChange: () => void
 }
 
@@ -66,6 +66,7 @@ const VoteSection = ({
   sectionStatus = SectionStatus.FINISH,
   choiceSelect,
   questionName,
+  contractAddress,
   toggleChange,
 }: IVoteProps) => {
   const { account, library } = useConnectWeb3React()
@@ -78,6 +79,9 @@ const VoteSection = ({
   }, [])
 
   const handleOnVote = useCallback(async () => {
+    if (!contractAddress) {
+      return
+    }
     if (account && library) {
       const choiceId = sampleChoice.findIndex(
         (choiceName) => choiceName === selectChoice
@@ -85,16 +89,17 @@ const VoteSection = ({
       if (choiceId !== 0 && !choiceId) {
         return
       }
-      console.log("pass-this!")
-      await voteService.vote(
-        account,
-        HardCodeContractAddress,
-        library,
-        choiceId
-      )
+      await voteService.vote(account, contractAddress, library, choiceId)
       toggleChange()
     }
-  }, [account, library, selectChoice, sampleChoice, toggleChange])
+  }, [
+    account,
+    library,
+    selectChoice,
+    sampleChoice,
+    toggleChange,
+    contractAddress,
+  ])
 
   useEffect(() => {
     setSelectChoice(choiceSelect)
@@ -105,10 +110,13 @@ const VoteSection = ({
       if (!library) {
         return
       }
+      if (!contractAddress) {
+        return
+      }
       if (sectionStatus === SectionStatus.FINISH) {
         const response = await voteService.fetchVoteData(
           library,
-          HardCodeContractAddress,
+          contractAddress,
           sampleChoice.length
         )
         if (response && response.length > 0) {
@@ -117,7 +125,7 @@ const VoteSection = ({
       }
     }
     fetchVoteResult()
-  }, [library, sampleChoice.length, sectionStatus])
+  }, [library, sampleChoice.length, sectionStatus, contractAddress])
 
   const [sumVoteData, maxScore, winner] = useMemo(() => {
     const _sumVoteData = finalResultData.reduce(
@@ -215,10 +223,13 @@ const VoteSection = ({
                         {data.title}
                       </div>
                       <div className="text-white font-bold text-xl flex flex-row gap-x-4">
-                        {((data.numberOfVote * 100) / sumVoteData).toFixed(3)} %
+                        {sumVoteData !== 0
+                          ? ((data.numberOfVote * 100) / sumVoteData).toFixed(3)
+                          : 0}{" "}
+                        %
                       </div>
                     </div>
-                    {winner?.title === data.title && (
+                    {winner?.title === data.title && sumVoteData !== 0 && (
                       <div className="flex h-full justify-center items-center">
                         <Image
                           src="/images/icons/checked.svg"
@@ -229,7 +240,6 @@ const VoteSection = ({
                       </div>
                     )}
 
-                    {/*<div className="absolute w-[50%] bg-gray-500 left-0 bottom-0 py-[27px] rounded-[10px]"></div>*/}
                     <BarChart
                       width={(data.numberOfVote * 95) / sumVoteData}
                       winner={data.numberOfVote === maxScore}

@@ -4,7 +4,6 @@ import { DetailSection } from "pages/Topic/DetailSection"
 import { TopicProps } from "src/types/topic.type"
 import VoteSection, { SectionStatus } from "pages/Topic/VoteSection"
 import { useState, useMemo, useCallback, useEffect } from "react"
-import { HardCodeContractAddress } from "src/constants/const"
 import useConnectWeb3React from "src/hooks/useConnectWeb3React"
 import { IVoteDataInterface, voteService } from "src/services/VoteService"
 import styled from "styled-components"
@@ -112,14 +111,19 @@ export default function Topic({ address }: { address: string }) {
     fetchTopic()
   }, [address])
 
+  console.log(topic)
+
   useEffect(() => {
     const fetchVoteStatus = async () => {
+      if (!topic?.address) {
+        return
+      }
       if (!account || !library) {
         setVoteStatus(false)
         return
       }
       const voteChoice = await voteService.getUserVoteStatus(
-        HardCodeContractAddress,
+        topic.address,
         account,
         library
       )
@@ -127,29 +131,32 @@ export default function Topic({ address }: { address: string }) {
       setChoiceVote(voteChoice)
     }
     fetchVoteStatus()
-  }, [account, change, library])
+  }, [account, change, library, topic])
 
   useEffect(() => {
     const fetchInitialData = async () => {
       if (!library) {
         return
       }
-      const result = await voteService.fetchInitialData(
-        library,
-        HardCodeContractAddress
-      )
+
+      if (!topic?.address) {
+        return
+      }
+      const result = await voteService.fetchInitialData(library, topic.address)
       if (result) {
         setVoteData(result)
       }
     }
     fetchInitialData()
-  }, [library])
+  }, [library, topic])
 
   return (
     <Container>
       <SectionContainer>
         <FirstSection>
-          {isLoading ? null : <DetailSection topic={topic as TopicProps} />}
+          {isLoading
+            ? null
+            : topic && <DetailSection topic={topic as TopicProps} />}
         </FirstSection>
       </SectionContainer>
       <SectionContainer>
@@ -163,6 +170,7 @@ export default function Topic({ address }: { address: string }) {
               canVote={!voteStatus}
               toggleChange={toggleChange}
               choiceSelect={choiceVote}
+              contractAddress={topic?.address}
             />
           </div>
         </SecondSection>
