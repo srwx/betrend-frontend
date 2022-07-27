@@ -3,6 +3,7 @@ import { WalletButton } from "component/Button/WalletButton/WalletButton"
 import React from "react"
 import styled from "styled-components"
 import useConnectWallet from "src/hooks/useConnectWallet"
+import Link from "next/link"
 
 const Container = styled.div`
   background: linear-gradient(
@@ -28,13 +29,16 @@ export const Header = () => {
 
   return (
     <Container>
-      <div
-        className={classNames(
-          "text-lg text-white font-semibold tracking-wide cursor-pointer"
-        )}
-      >
-        Squeeze
-      </div>
+      <Link href="/">
+        <div
+          className={classNames(
+            "text-lg text-white font-semibold tracking-wide cursor-pointer"
+          )}
+        >
+          Squeeze
+        </div>
+      </Link>
+
       <div
         className={classNames(
           "w-[80%] text-sm text-white font-light",

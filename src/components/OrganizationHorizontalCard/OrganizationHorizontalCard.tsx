@@ -1,5 +1,6 @@
 import Image from "next/image"
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { TopicProps } from "src/types/topic.type"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -25,6 +26,18 @@ export const OrganizationHorizontalCard = ({
   name?: string
   peopleNumber?: number
 }) => {
+  const [activePoll, setActivePoll] = useState<number>()
+  useEffect(() => {
+    const fetchAllOrganization = async () => {
+      const res = await fetch(`${process.env.apiUrl}/api/topics?filter=poll`, {
+        headers: { "ngrok-skip-browser-warning": "11" },
+      })
+      const resJson = await res.json()
+      const n: TopicProps[] = resJson.data.filter((i: TopicProps) => i.isActive)
+      setActivePoll(n.length)
+    }
+    fetchAllOrganization()
+  }, [])
   return (
     <Container>
       <div className="flex items-center">
@@ -57,7 +70,7 @@ export const OrganizationHorizontalCard = ({
           height="20px"
         />
         {/* TODO: Active polls count*/}
-        <span className="text-[#20FDA5]">5 Active Polls</span>
+        <span className="text-[#20FDA5]">{activePoll} Active Polls</span>
       </div>
     </Container>
   )
